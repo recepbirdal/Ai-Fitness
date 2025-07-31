@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#667eea">
+    <title>💪 Fitness Takvimi</title>
+    <link rel="stylesheet" href="dashboard.css">
+
+    <!-- iOS PWA optimizasyonları -->
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💪</text></svg>">
+    <meta name="apple-mobile-web-app-title" content="Fitness Takvimi">
+
+    <!-- Preload kritik kaynaklar -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+</head>
+<body>
+<div class="app-container">
+    <!-- Header -->
+    <div class="header">
+        <button class="logout-btn" onclick="logout()" title="Çıkış Yap" aria-label="Çıkış Yap">
+            🚪
+        </button>
+        <h1 class="header-title">💪 Fitness Takvimi</h1>
+        <p class="header-subtitle" id="welcomeUser">Hoş geldin!</p>
+    </div>
+
+    <!-- Profile Card -->
+    <div class="profile-card">
+        <div class="profile-avatar" id="userAvatar" aria-label="Kullanıcı Avatarı">👤</div>
+        <h2 class="profile-name" id="username">Kullanıcı</h2>
+        <div class="profile-stats">
+            <div class="stat-item">
+                <div class="stat-value" id="userKilo">--</div>
+                <div class="stat-label">Kilo (kg)</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="userBoy">--</div>
+                <div class="stat-label">Boy (cm)</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="userTecrube">--</div>
+                <div class="stat-label">Seviye</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="userGunSayisi">--</div>
+                <div class="stat-label">Gün/Hafta</div>
+            </div>
+        </div>
+        <button class="generate-btn" id="generateBtn" onclick="generateNewProgram()" aria-label="Yeni Program Oluştur">
+            <span id="generateBtnText">🔄 Yeni Program Oluştur</span>
+            <span id="generateBtnLoader" class="loading" style="display: none;" aria-hidden="true"></span>
+        </button>
+    </div>
+
+    <!-- Week View -->
+    <div class="week-section">
+        <div class="week-header">
+            <h3 class="week-title">Haftalık Program</h3>
+            <p class="week-date" id="currentWeek" aria-live="polite"></p>
+        </div>
+        <div class="week-grid" id="weekView" role="grid" aria-label="Haftalık antrenman programı">
+            <!-- JavaScript ile doldurulacak -->
+        </div>
+    </div>
+
+    <!-- Backdrop -->
+    <div class="backdrop" id="backdrop" onclick="closeBottomSheet()" aria-hidden="true"></div>
+
+    <!-- Bottom Sheet -->
+    <div class="bottom-sheet" id="bottomSheet" role="dialog" aria-modal="true" aria-labelledby="bottomSheetTitle">
+        <div class="bottom-sheet-handle" aria-hidden="true"></div>
+        <div class="bottom-sheet-content">
+            <h3 class="bottom-sheet-title" id="bottomSheetTitle">Günlük Antrenman</h3>
+            <div id="exerciseContent">
+                <div class="empty-state">
+                    <div class="empty-state-icon" aria-hidden="true">📅</div>
+                    <p>Detayları görmek için bir gün seçin</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Chat Modal -->
+    <div id="aiChatModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="chatModalTitle">
+        <div class="modal-content chat-modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="chatModalTitle">💬 AI Fitness Koçu</h3>
+                <button class="close-btn" onclick="closeChatModal()" aria-label="Kapat">×</button>
+            </div>
+
+            <div class="chat-container">
+                <div id="chatMessages" class="chat-messages" role="log" aria-live="polite" aria-label="Sohbet mesajları">
+                    <!-- Mesajlar buraya gelecek -->
+                </div>
+
+                <!-- Quick Responses - TEXTBOX'in ÜSTÜNDE -->
+                <!-- JavaScript ile doldurulacak - burada placeholder -->
+
+                <!-- Chat Input - Quick responses'in ALTINDA -->
+                <div class="chat-input-container">
+                    <input
+                            type="text"
+                            id="chatInput"
+                            class="chat-input"
+                            placeholder="Nasıl yardımcı olabilirim?"
+                            onkeypress="handleChatKeyPress(event)"
+                            aria-label="Mesaj yaz"
+                            autocomplete="off"
+                            autocorrect="off"
+                            autocapitalize="sentences"
+                    >
+                    <button class="chat-send-btn" onclick="sendChatMessage()" aria-label="Mesaj gönder">
+                        <span class="send-icon" aria-hidden="true">➤</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="suggestionContainer" class="suggestion-container" style="display: none;" aria-label="AI önerileri">
+                <h4 class="suggestion-title">🤖 AI Önerileri:</h4>
+                <div id="suggestionList" class="suggestion-list" role="listbox" aria-label="Egzersiz önerileri">
+                    <!-- Öneriler buraya gelecek -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alternative Modal (Eski sistem - geriye uyumluluk) -->
+    <div id="alternativeModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="alternativeModalTitle">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="alternativeModalTitle">Alternatif Egzersizler</h3>
+                <button class="close-btn" onclick="closeModal()" aria-label="Kapat">×</button>
+            </div>
+            <p style="margin-bottom: 1rem; color: #666;">Bu egzersiz size zor geliyorsa, aşağıdaki alternatiflerden birini seçebilirsiniz:</p>
+            <div id="alternativeList" class="alternative-list" role="listbox" aria-label="Alternatif egzersizler">
+                <!-- JavaScript ile doldurulacak -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast" id="toast" role="alert" aria-live="assertive"></div>
+</div>
+
+<!-- Scripts -->
+<script src="dashboard.js"></script>
+
+<!-- Performance optimizations -->
+<script>
+    // iOS Safari viewport fix
+    function setIOSViewportHeight() {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+
+    if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+        setIOSViewportHeight();
+        window.addEventListener('resize', setIOSViewportHeight);
+        window.addEventListener('orientationchange', () => {
+            setTimeout(setIOSViewportHeight, 100);
+        });
+    }
+
+    // Prevent zoom on input focus (iOS)
+    document.addEventListener('touchstart', function() {}, {passive: true});
+
+    // Disable pull-to-refresh
+    let startY = 0;
+    document.addEventListener('touchstart', e => {
+        startY = e.touches[0].clientY;
+    }, {passive: true});
+
+    document.addEventListener('touchmove', e => {
+        const y = e.touches[0].clientY;
+        if (startY <= 10 && y > startY && !document.querySelector('.modal.show') && !document.querySelector('.bottom-sheet.show')) {
+            e.preventDefault();
+        }
+    }, {passive: false});
+
+    // Performance optimizations
+    window.addEventListener('load', () => {
+        // Preload kritik kaynakları
+        const preloadImages = ['💪', '🤖', '📅', '🔥'];
+        preloadImages.forEach(emoji => {
+            const img = new Image();
+            img.src = `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>${emoji}</text></svg>`;
+        });
+    });
+
+    // Keyboard handling for accessibility
+    document.addEventListener('keydown', (e) => {
+        // Escape key handling
+        if (e.key === 'Escape') {
+            if (document.getElementById('aiChatModal')?.classList.contains('show')) {
+                closeChatModal();
+            } else if (document.getElementById('bottomSheet')?.classList.contains('show')) {
+                closeBottomSheet();
+            }
+        }
+
+        // Tab trapping in modals
+        if (e.key === 'Tab') {
+            const modal = document.querySelector('.modal.show');
+            if (modal) {
+                const focusableElements = modal.querySelectorAll(
+                    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+                );
+                const firstElement = focusableElements[0];
+                const lastElement = focusableElements[focusableElements.length - 1];
+
+                if (e.shiftKey) {
+                    if (document.activeElement === firstElement) {
+                        lastElement.focus();
+                        e.preventDefault();
+                    }
+                } else {
+                    if (document.activeElement === lastElement) {
+                        firstElement.focus();
+                        e.preventDefault();
+                    }
+                }
+            }
+        }
+    });
+
+    // Enhanced error handling
+    window.addEventListener('error', (e) => {
+        console.error('Global error:', e.error);
+        showToast('❌ Bir hata oluştu. Sayfayı yenileyin.', 5000);
+    });
+
+    window.addEventListener('unhandledrejection', (e) => {
+        console.error('Unhandled promise rejection:', e.reason);
+        showToast('❌ Bağlantı hatası. Tekrar deneyin.', 5000);
+    });
+
+    // Network status monitoring
+    window.addEventListener('online', () => {
+        showToast('🌐 İnternet bağlantısı geri geldi', 2000);
+    });
+
+    window.addEventListener('offline', () => {
+        showToast('📴 İnternet bağlantısı kesildi', 3000);
+    });
+
+    // Memory management - cleanup on page unload
+    window.addEventListener('beforeunload', () => {
+        // Cleanup timers, event listeners etc.
+        document.querySelectorAll('.toast').forEach(el => el.remove());
+    });
+
+    // Optimize for mobile performance
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(() => {
+            // Non-critical initializations
+            console.log('🚀 Fitness Takvimi hazır!');
+        });
+    }
+</script>
+
+<!-- Inline critical CSS for faster loading -->
+<style>
+    /* Critical above-the-fold styles */
+    .app-container {
+        opacity: 0;
+        animation: fadeIn 0.3s ease forwards;
+    }
+
+    @keyframes fadeIn {
+        to { opacity: 1; }
+    }
+
+    /* Loading state */
+    .loading-state {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-size: 2rem;
+    }
+
+    /* Skeleton loading for better UX */
+    .skeleton {
+        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+        background-size: 200% 100%;
+        animation: loading 1.5s infinite;
+    }
+
+    @keyframes loading {
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
+    }
+
+    /* Accessibility improvements */
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
+
+    /* High contrast mode support - Modern CSS */
+    @media (prefers-contrast: more) {
+        :root {
+            --primary: #000080;
+            --success: #006400;
+            --text-dark: #000000;
+            --border-light: #000000;
+        }
+    }
+
+    /* Windows High Contrast Mode support */
+    @media (forced-colors: active) {
+        :root {
+            --primary: ButtonText;
+            --success: ButtonText;
+            --text-dark: ButtonText;
+            --border-light: ButtonBorder;
+        }
+
+        .day-card, .exercise-item, .suggestion-item {
+            border: 1px solid ButtonBorder;
+        }
+    }
+
+    /* Focus indicators for better accessibility */
+    *:focus {
+        outline: 2px solid var(--primary, #667eea);
+        outline-offset: 2px;
+    }
+
+    /* Reduce motion for accessibility */
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+    }
+</style>
+
+</body>
+</html>

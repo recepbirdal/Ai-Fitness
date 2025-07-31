@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#667eea">
+    <title>💪 Fitness Takvimi - Giriş</title>
+    <style>
+        /* CSS Reset ve Root Variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --primary: #667eea;
+            --primary-dark: #5a67d8;
+            --success: #28a745;
+            --error: #dc3545;
+            --bg-light: #f8f9fa;
+            --text-dark: #333;
+            --text-light: #777;
+            --border: #ddd;
+            --shadow: rgba(0,0,0,0.1);
+            --vh: 1vh;
+        }
+
+        /* iOS Safari viewport fix */
+        html {
+            height: calc(var(--vh, 1vh) * 100);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--primary) 0%, #764ba2 100%);
+            min-height: calc(var(--vh, 1vh) * 100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            -webkit-font-smoothing: antialiased;
+            color: var(--text-dark);
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            width: 100%;
+            max-width: 400px;
+            padding: 2rem 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Header */
+        h1 {
+            text-align: center;
+            color: #666; /* Daha açık renk */
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            font-weight: 600; /* 700'den 600'e düşürüldü */
+        }
+
+        /* Tab Container - Mobil Optimize */
+        .tab-container {
+            display: flex;
+            margin-bottom: 1.5rem;
+            background: var(--bg-light);
+            border-radius: 12px;
+            padding: 4px;
+            position: relative;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 0.75rem 0.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 500; /* 600'den 500'e düşürüldü */
+            color: #999; /* #777'den #999'a açıldı */
+            border-radius: 10px;
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .tab.active {
+            color: white;
+            background: var(--primary);
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Form Styling - Mobil Optimize */
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #666; /* Daha açık renk */
+            font-weight: 500; /* Font weight de hafifletildi */
+            font-size: 0.9rem;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="number"] {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 16px; /* iOS zoom önlemek için */
+            transition: all 0.3s ease;
+            background: white;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            background: white;
+        }
+
+        /* Button Styling - Mobil */
+        button[type="submit"] {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button[type="submit"]:active {
+            transform: scale(0.98);
+        }
+
+        button[type="submit"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Form Row - Mobil Responsive */
+        .form-row {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        /* Radio Group - Mobil Optimize */
+        .radio-group {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .radio-wrapper {
+            flex: 1;
+            position: relative;
+        }
+
+        .radio-wrapper input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .radio-wrapper label {
+            display: block;
+            padding: 0.75rem 0.5rem;
+            background: var(--bg-light);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            margin-bottom: 0;
+            font-size: 0.85rem;
+            user-select: none;
+        }
+
+        .radio-wrapper input[type="radio"]:checked + label {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Checkbox Grid - MOBİL ÖZELLEŞTİRME */
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Her satırda 2 tane */
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            background: var(--bg-light);
+            padding: 0.6rem 0.75rem; /* Padding küçültüldü */
+            border: 2px solid transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            justify-content: flex-start;
+            text-align: left;
+            font-size: 0.8rem; /* Font size küçültüldü */
+            font-weight: 500;
+            user-select: none;
+            position: relative;
+        }
+
+        .checkbox-wrapper:active {
+            transform: scale(0.98);
+        }
+
+        .checkbox-wrapper:hover {
+            background: #e9ecef;
+        }
+
+        /* Son satırda tek gün için full-width */
+        .checkbox-wrapper.full-width {
+            grid-column: 1 / span 2;
+            justify-content: center;
+        }
+
+        .checkbox-wrapper input[type="checkbox"] {
+            width: 16px; /* Checkbox boyutu küçültüldü */
+            height: 16px;
+            margin-right: 0.5rem;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        .checkbox-wrapper input[type="checkbox"]:checked {
+            transform: scale(1.1);
+        }
+
+        .checkbox-wrapper:has(input:checked) {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border-color: var(--primary);
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Messages - Mobil */
+        #message {
+            margin-bottom: 1rem;
+        }
+
+        .message {
+            padding: 0.875rem 1rem;
+            margin: 0;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 0.9rem;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #c3e6cb;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #f5c6cb;
+        }
+
+        /* Loading State */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-left: 0.5rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive - Küçük Ekranlar */
+        @media (max-width: 480px) {
+            .container {
+                padding: 1.5rem 1rem;
+                margin: 0.5rem;
+                border-radius: 16px;
+            }
+
+            h1 {
+                font-size: 1.3rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .form-row .form-group {
+                margin-bottom: 1.2rem;
+            }
+
+            .radio-group {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .radio-wrapper label {
+                padding: 0.875rem;
+                font-size: 0.9rem;
+            }
+
+            .checkbox-wrapper {
+                padding: 0.75rem;
+                font-size: 0.85rem;
+            }
+
+            /* Çok küçük ekranlarda checkbox grid'i tek sütun yap */
+            @media (max-width: 320px) {
+                .checkbox-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .checkbox-wrapper.full-width {
+                    grid-column: 1;
+                }
+            }
+        }
+
+        /* Very small screens */
+        @media (max-width: 360px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .checkbox-wrapper {
+                font-size: 0.75rem;
+                padding: 0.5rem 0.6rem;
+            }
+
+            input[type="checkbox"] {
+                width: 14px;
+                height: 14px;
+            }
+        }
+
+        /* Landscape orientation */
+        @media (orientation: landscape) and (max-height: 500px) {
+            body {
+                padding: 0.5rem;
+            }
+
+            .container {
+                padding: 1rem;
+                max-width: 600px;
+            }
+
+            h1 {
+                margin-bottom: 1rem;
+                font-size: 1.2rem;
+            }
+
+            .form-group {
+                margin-bottom: 0.8rem;
+            }
+        }
+
+        /* iOS Safe Area */
+        @supports (padding: max(0px)) {
+            body {
+                padding-left: max(1rem, env(safe-area-inset-left));
+                padding-right: max(1rem, env(safe-area-inset-right));
+                padding-top: max(1rem, env(safe-area-inset-top));
+                padding-bottom: max(1rem, env(safe-area-inset-bottom));
+            }
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Focus visible for better accessibility */
+        *:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            .container {
+                background: #1a1a1a;
+                color: #ffffff;
+            }
+
+            h1 {
+                color: #ddd; /* Dark mode'da ana başlık */
+            }
+
+            label {
+                color: #ccc; /* Dark mode'da etiketler daha açık */
+            }
+
+            input {
+                background: #2d2d2d;
+                color: #ffffff;
+                border-color: #444;
+            }
+
+            .tab {
+                color: #bbb; /* Dark mode'da daha açık */
+            }
+
+            .checkbox-wrapper,
+            .radio-wrapper label {
+                background: #2d2d2d;
+                color: #ffffff;
+            }
+        }
+
+        /* Touch optimizations */
+        .tab,
+        .checkbox-wrapper,
+        .radio-wrapper,
+        button {
+            touch-action: manipulation;
+        }
+
+        /* Anti-zoom for iOS */
+        input[type="text"],
+        input[type="password"],
+        input[type="number"] {
+            font-size: 16px !important; /* iOS zoom prevention */
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>💪 Fitness Takvimi</h1>
+
+    <div class="tab-container">
+        <div class="tab active" onclick="changeTab('login')">Giriş Yap</div>
+        <div class="tab" onclick="changeTab('register')">Kayıt Ol</div>
+    </div>
+
+    <div id="message"></div>
+
+    <!-- Giriş Formu -->
+    <div id="login" class="tab-content active">
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="loginUsername">Kullanıcı Adı</label>
+                <input type="text" id="loginUsername" required autocomplete="username" autocapitalize="none">
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Şifre</label>
+                <input type="password" id="loginPassword" required autocomplete="current-password">
+            </div>
+            <button type="submit">Giriş Yap</button>
+        </form>
+    </div>
+
+    <!-- Kayıt Formu -->
+    <div id="register" class="tab-content">
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="regUsername">Kullanıcı Adı</label>
+                <input type="text" id="regUsername" required autocomplete="username" autocapitalize="none">
+            </div>
+            <div class="form-group">
+                <label for="regPassword">Şifre</label>
+                <input type="password" id="regPassword" required autocomplete="new-password">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="regKilo">Kilo (kg)</label>
+                    <input type="number" id="regKilo" min="30" max="200" required>
+                </div>
+                <div class="form-group">
+                    <label for="regBoy">Boy (cm)</label>
+                    <input type="number" id="regBoy" min="120" max="220" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Tecrübe Seviyesi</label>
+                <div class="radio-group">
+                    <div class="radio-wrapper">
+                        <input type="radio" id="baslangic" name="tecrube" value="baslangic" required>
+                        <label for="baslangic">Başlangıç</label>
+                    </div>
+                    <div class="radio-wrapper">
+                        <input type="radio" id="orta" name="tecrube" value="orta">
+                        <label for="orta">Orta</label>
+                    </div>
+                    <div class="radio-wrapper">
+                        <input type="radio" id="ileri" name="tecrube" value="ileri">
+                        <label for="ileri">İleri</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Spor günleri - MOBİL OPTİMİZE GRİD -->
+            <div class="form-group">
+                <label>Spor Günleri (En az 1 gün seçin)</label>
+                <div class="checkbox-grid">
+                    <!-- 1. Satır - 2 gün -->
+                    <label class="checkbox-wrapper">
+                        <input type="checkbox" name="sporGunleri" value="pazartesi">
+                        Pazartesi
+                    </label>
+                    <label class="checkbox-wrapper">
+                        <input type="checkbox" name="sporGunleri" value="sali">
+                        Salı
+                    </label>
+
+                    <!-- 2. Satır - 2 gün -->
+                    <label class="checkbox-wrapper">
+                        <input type="checkbox" name="sporGunleri" value="carsamba">
+                        Çarşamba
+                    </label>
+                    <label class="checkbox-wrapper">
+                        <input type="checkbox" name="sporGunleri" value="persembe">
+                        Perşembe
+                    </label>
+
+                    <!-- 3. Satır - 2 gün -->
+                    <label class="checkbox-wrapper">
+                        <input type="checkbox" name="sporGunleri" value="cuma">
+                        Cuma
+                    </label>
+                    <label class="checkbox-wrapper">
+                        <input type="checkbox" name="sporGunleri" value="cumartesi">
+                        Cumartesi
+                    </label>
+
+                    <!-- 4. Satır - 1 gün (full-width) -->
+                    <label class="checkbox-wrapper full-width">
+                        <input type="checkbox" name="sporGunleri" value="pazar">
+                        Pazar
+                    </label>
+                </div>
+            </div>
+            <button type="submit">Kayıt Ol</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // iOS Safari viewport fix
+    function setIOSViewportHeight() {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+
+    if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+        setIOSViewportHeight();
+        window.addEventListener('resize', setIOSViewportHeight);
+        window.addEventListener('orientationchange', () => {
+            setTimeout(setIOSViewportHeight, 100);
+        });
+    }
+
+    // Veritabanı kontrolü
+    if (!localStorage.getItem('users')) {
+        localStorage.setItem('users', JSON.stringify([]));
+    }
+
+    // Tab değiştirme - İyileştirilmiş
+    function changeTab(tabName) {
+        // Remove active classes
+        document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+        // Add active classes
+        event.target.classList.add('active');
+        document.getElementById(tabName).classList.add('active');
+
+        // Clear messages
+        document.getElementById('message').innerHTML = '';
+
+        // Reset forms
+        document.querySelectorAll('form').forEach(form => form.reset());
+    }
+
+    // Mesaj gösterme - İyileştirilmiş
+    function showMessage(text, type) {
+        const messageDiv = document.getElementById('message');
+        messageDiv.innerHTML = `<div class="message ${type}">${text}</div>`;
+
+        // Auto-hide after 3 seconds
+        setTimeout(() => {
+            const message = messageDiv.querySelector('.message');
+            if (message) {
+                message.style.animation = 'fadeOut 0.3s ease forwards';
+                setTimeout(() => {
+                    messageDiv.innerHTML = '';
+                }, 300);
+            }
+        }, 3000);
+    }
+
+    // Basit hash fonksiyonu
+    function simpleHash(str) {
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+            const char = str.charCodeAt(i);
+            hash = ((hash << 5) - hash) + char;
+            hash = hash & hash;
+        }
+        return Math.abs(hash).toString();
+    }
+
+    // Form validation
+    function validateForm(form) {
+        const inputs = form.querySelectorAll('input[required]');
+        let isValid = true;
+
+        inputs.forEach(input => {
+            if (!input.value.trim()) {
+                input.style.borderColor = 'var(--error)';
+                isValid = false;
+            } else {
+                input.style.borderColor = 'var(--border)';
+            }
+        });
+
+        return isValid;
+    }
+
+    // Giriş - İyileştirilmiş
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        if (!validateForm(this)) {
+            showMessage('Lütfen tüm alanları doldurun!', 'error');
+            return;
+        }
+
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+
+        // Loading state
+        submitBtn.innerHTML = 'Giriş yapılıyor... <span class="loading"></span>';
+        submitBtn.disabled = true;
+
+        setTimeout(() => {
+            const username = document.getElementById('loginUsername').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            const hashedPassword = simpleHash(password);
+
+            const users = JSON.parse(localStorage.getItem('users'));
+            const user = users.find(u => u.username === username && u.password === hashedPassword);
+
+            if (user) {
+                localStorage.setItem('currentUser', username);
+                showMessage('✅ Giriş başarılı! Yönlendiriliyorsunuz...', 'success');
+
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1500);
+            } else {
+                showMessage('❌ Kullanıcı adı veya şifre hatalı!', 'error');
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        }, 1000);
+    });
+
+    // Kayıt - İyileştirilmiş
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        if (!validateForm(this)) {
+            showMessage('Lütfen tüm alanları doldurun!', 'error');
+            return;
+        }
+
+        const username = document.getElementById('regUsername').value.trim();
+        const password = document.getElementById('regPassword').value;
+        const kilo = document.getElementById('regKilo').value;
+        const boy = document.getElementById('regBoy').value;
+        const tecrube = document.querySelector('input[name="tecrube"]:checked');
+
+        // Validation
+        if (username.length < 3) {
+            showMessage('❌ Kullanıcı adı en az 3 karakter olmalı!', 'error');
+            return;
+        }
+
+        if (password.length < 4) {
+            showMessage('❌ Şifre en az 4 karakter olmalı!', 'error');
+            return;
+        }
+
+        if (!tecrube) {
+            showMessage('❌ Lütfen tecrübe seviyenizi seçin!', 'error');
+            return;
+        }
+
+        const sporGunleri = [];
+        document.querySelectorAll('input[name="sporGunleri"]:checked').forEach(checkbox => {
+            sporGunleri.push(checkbox.value);
+        });
+
+        if (sporGunleri.length === 0) {
+            showMessage('❌ En az 1 spor günü seçmelisiniz!', 'error');
+            return;
+        }
+
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+
+        // Loading state
+        submitBtn.innerHTML = 'Kayıt yapılıyor... <span class="loading"></span>';
+        submitBtn.disabled = true;
+
+        setTimeout(() => {
+            const users = JSON.parse(localStorage.getItem('users'));
+
+            if (users.find(u => u.username === username)) {
+                showMessage('❌ Bu kullanıcı adı zaten kullanılıyor!', 'error');
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                return;
+            }
+
+            const newUser = {
+                username: username,
+                password: simpleHash(password),
+                profile: {
+                    kilo: parseInt(kilo),
+                    boy: parseInt(boy),
+                    tecrube: tecrube.value,
+                    sporGunleri: sporGunleri
+                },
+                takvim: [],
+                zorlanılanHareketler: [],
+                kayitTarihi: new Date().toISOString()
+            };
+
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+
+            showMessage('✅ Kayıt başarılı! Giriş yapabilirsiniz.', 'success');
+
+            setTimeout(() => {
+                // Reset form and switch to login
+                this.reset();
+                changeTab('login');
+                document.querySelector('.tab[onclick="changeTab(\'login\')"]').click();
+            }, 1500);
+
+        }, 1000);
+    });
+
+    // Enhanced form interactions
+    document.querySelectorAll('input').forEach(input => {
+        input.addEventListener('input', function() {
+            if (this.style.borderColor === 'var(--error)') {
+                this.style.borderColor = 'var(--border)';
+            }
+        });
+    });
+
+    // Prevent zoom on input focus (iOS)
+    document.addEventListener('touchstart', function() {}, {passive: true});
+
+    // Auto-focus first input when tab changes
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('tab')) {
+            setTimeout(() => {
+                const activeForm = document.querySelector('.tab-content.active form');
+                if (activeForm) {
+                    const firstInput = activeForm.querySelector('input');
+                    if (firstInput) {
+                        firstInput.focus();
+                    }
+                }
+            }, 100);
+        }
+    });
+
+    // Add loading keyframes
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(-20px); }
+        }
+    `;
+    document.head.appendChild(style);
+
+    console.log('💪 Fitness Takvimi Login sayfası hazır!');
+</script>
+</body>
+</html>
