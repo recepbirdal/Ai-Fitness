@@ -31,19 +31,27 @@
 
         /* iOS Safari viewport fix */
         html {
-            height: calc(var(--vh, 1vh) * 100);
+            min-height: 100vh; /* vh kullan */
+            /* HTML de aynı gradient */
+            background: linear-gradient(135deg, var(--primary) 0%, #764ba2 100%) fixed;
+            overscroll-behavior: none;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, var(--primary) 0%, #764ba2 100%);
-            min-height: calc(var(--vh, 1vh) * 100);
+            background: linear-gradient(135deg, var(--primary) 0%, #764ba2 100%) fixed; /* fixed eklendi */
+            min-height: 100vh; /* vh kullan */
             display: flex;
-            align-items: center;
+            align-items: flex-start; /* center yerine flex-start */
             justify-content: center;
-            padding: 1rem;
+            padding: 2rem 1rem; /* Üst ve alt padding artırıldı */
             -webkit-font-smoothing: antialiased;
             color: var(--text-dark);
+            /* Overscroll davranışını kontrol et */
+            overscroll-behavior: none;
+            -webkit-overscroll-behavior: none;
+            /* Scroll durumunu kontrol et */
+            overflow-y: auto;
         }
 
         .container {
@@ -53,8 +61,11 @@
             width: 100%;
             max-width: 400px;
             padding: 2rem 1.5rem;
+            margin: 1rem 0; /* Üst ve alt margin */
             position: relative;
             overflow: hidden;
+            /* Container'ın minimum yükseklik garantisi */
+            min-height: auto;
         }
 
         /* Header */
@@ -134,9 +145,15 @@
             border-radius: 12px;
             font-size: 16px; /* iOS zoom önlemek için */
             transition: all 0.3s ease;
-            background: white;
-            -webkit-appearance: none;
-            appearance: none;
+            background: white !important;
+            color: #333 !important;
+            /* Number input için normal davranış */
+        }
+
+        /* Number input placeholder */
+        input[type="number"]::placeholder {
+            color: #999;
+            opacity: 1;
         }
 
         input:focus {
@@ -144,6 +161,7 @@
             border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
             background: white;
+            color: #333; /* Focus durumunda da siyah */
         }
 
         /* Button Styling - Mobil */
@@ -336,9 +354,13 @@
 
         /* Responsive - Küçük Ekranlar */
         @media (max-width: 480px) {
+            body {
+                padding: 1.5rem 0.5rem; /* Mobilde daha fazla üst-alt boşluk */
+            }
+
             .container {
                 padding: 1.5rem 1rem;
-                margin: 0.5rem;
+                margin: 0.5rem 0; /* Mobilde küçük margin */
                 border-radius: 16px;
             }
 
@@ -404,11 +426,14 @@
         @media (orientation: landscape) and (max-height: 500px) {
             body {
                 padding: 0.5rem;
+                align-items: flex-start; /* Dikey ortalamayi kapat */
+                padding-top: 1rem;
             }
 
             .container {
                 padding: 1rem;
                 max-width: 600px;
+                margin-top: 0; /* Üstten margin kaldır */
             }
 
             h1 {
@@ -426,8 +451,8 @@
             body {
                 padding-left: max(1rem, env(safe-area-inset-left));
                 padding-right: max(1rem, env(safe-area-inset-right));
-                padding-top: max(1rem, env(safe-area-inset-top));
-                padding-bottom: max(1rem, env(safe-area-inset-bottom));
+                padding-top: max(2rem, env(safe-area-inset-top) + 1rem); /* Üst boşluk artırıldı */
+                padding-bottom: max(2rem, env(safe-area-inset-bottom) + 1rem); /* Alt boşluk artırıldı */
             }
         }
 
@@ -493,6 +518,8 @@
         input[type="password"],
         input[type="number"] {
             font-size: 16px !important; /* iOS zoom prevention */
+            color: #333 !important; /* Yazı rengi kesinlikle siyah */
+            background: white !important; /* Arkaplan kesinlikle beyaz */
         }
     </style>
 </head>
@@ -537,11 +564,11 @@
             <div class="form-row">
                 <div class="form-group">
                     <label for="regKilo">Kilo (kg)</label>
-                    <input type="number" id="regKilo" min="30" max="200" required>
+                    <input type="number" id="regKilo" min="30" max="200" step="0.1" placeholder="75.5" inputmode="decimal" required>
                 </div>
                 <div class="form-group">
                     <label for="regBoy">Boy (cm)</label>
-                    <input type="number" id="regBoy" min="120" max="220" required>
+                    <input type="number" id="regBoy" min="120" max="220" step="0.1" placeholder="175.5" inputmode="decimal" required>
                 </div>
             </div>
 
@@ -728,6 +755,41 @@
                 submitBtn.disabled = false;
             }
         }, 1000);
+    });
+
+    // Simple input validation - Text girişine izin ver
+    document.getElementById('regKilo').addEventListener('blur', function(e) {
+        let value = parseFloat(e.target.value);
+        if (isNaN(value) || value < 30) {
+            e.target.value = 30;
+            showMessage('⚠️ Kilo en az 30 kg olmalı', 'error');
+        }
+        if (value > 200) {
+            e.target.value = 200;
+            showMessage('⚠️ Kilo en fazla 200 kg olabilir', 'error');
+        }
+    });
+
+    document.getElementById('regBoy').addEventListener('blur', function(e) {
+        let value = parseFloat(e.target.value); // parseInt yerine parseFloat
+        if (isNaN(value) || value < 120) {
+            e.target.value = 120;
+            showMessage('⚠️ Boy en az 120 cm olmalı', 'error');
+        }
+        if (value > 220) {
+            e.target.value = 220;
+            showMessage('⚠️ Boy en fazla 220 cm olabilir', 'error');
+        }
+    });
+
+    // Sadece sayı girişine izin ver ama yazma engelleme
+    document.querySelectorAll('input[type="number"]').forEach(input => {
+        input.addEventListener('keypress', function(e) {
+            // Sayı, nokta, virgül, backspace, delete, tab, enter'a izin ver
+            if (!/[0-9.,]/.test(e.key) && !['Backspace', 'Delete', 'Tab', 'Enter', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+                e.preventDefault();
+            }
+        });
     });
 
     // Kayıt - İyileştirilmiş
