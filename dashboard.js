@@ -1,214 +1,241 @@
 // ==========================================
-// FITNESS TAKVİMİ - TAM VERSİYON
+// FITNESS TAKVİMİ - SADELEŞTİRİLMİŞ VERSİYON
 // ==========================================
 
-// Egzersiz veritabanı - FULL
-const exerciseDB = {
-    gogus: [
-        { id: 1, isim: "Barbell Bench Press", zorluk: 3, set: "4x8-10", ekipman: "Barbell + Bench" },
-        { id: 2, isim: "Dumbbell Press", zorluk: 2, set: "3x10-12", ekipman: "Dumbbell + Bench" },
-        { id: 3, isim: "Push-up", zorluk: 1, set: "3x15-20", ekipman: "Vücut Ağırlığı" },
-        { id: 4, isim: "Cable Fly", zorluk: 2, set: "3x12-15", ekipman: "Cable Makinesi" },
-        { id: 5, isim: "Incline Dumbbell Press", zorluk: 2, set: "3x10-12", ekipman: "Dumbbell + İncline Bench" },
-        { id: 31, isim: "Diamond Push-up", zorluk: 3, set: "3x8-12", ekipman: "Vücut Ağırlığı" },
-        { id: 32, isim: "Decline Push-up", zorluk: 2, set: "3x10-15", ekipman: "Vücut Ağırlığı + Yüksek Yüzey" },
-        { id: 33, isim: "Wide Grip Push-up", zorluk: 2, set: "3x12-15", ekipman: "Vücut Ağırlığı" },
-        { id: 34, isim: "Chest Dips", zorluk: 3, set: "3x8-12", ekipman: "Paralel Bar/Sandalye" },
-        { id: 35, isim: "Single Arm Push-up", zorluk: 4, set: "3x5-8", ekipman: "Vücut Ağırlığı" },
-        { id: 36, isim: "Archer Push-up", zorluk: 4, set: "3x6-10", ekipman: "Vücut Ağırlığı" },
-        { id: 37, isim: "Hindu Push-up", zorluk: 3, set: "3x8-15", ekipman: "Vücut Ağırlığı" },
-        { id: 38, isim: "Pike Push-up", zorluk: 3, set: "3x8-12", ekipman: "Vücut Ağırlığı" },
-        { id: 39, isim: "Wall Push-up", zorluk: 1, set: "3x15-25", ekipman: "Duvar" },
-        { id: 40, isim: "Incline Push-up", zorluk: 1, set: "3x12-20", ekipman: "Yüksek Yüzey" }
-    ],
-    sirt: [
-        { id: 6, isim: "Pull-up", zorluk: 3, set: "4x6-8", ekipman: "Pull-up Bar" },
-        { id: 7, isim: "Lat Pulldown", zorluk: 2, set: "3x10-12", ekipman: "Lat Pulldown Makinesi" },
-        { id: 8, isim: "Barbell Row", zorluk: 3, set: "4x8-10", ekipman: "Barbell" },
-        { id: 9, isim: "Cable Row", zorluk: 2, set: "3x12-15", ekipman: "Cable Makinesi" },
-        { id: 10, isim: "T-Bar Row", zorluk: 2, set: "3x10-12", ekipman: "T-Bar/Barbell" },
-        { id: 41, isim: "Chin-up", zorluk: 3, set: "3x6-10", ekipman: "Pull-up Bar" },
-        { id: 42, isim: "Negative Pull-up", zorluk: 2, set: "3x5-8", ekipman: "Pull-up Bar + Yardım" },
-        { id: 43, isim: "Inverted Row", zorluk: 2, set: "3x10-15", ekipman: "Düşük Bar/Masa" },
-        { id: 44, isim: "Superman", zorluk: 1, set: "3x15-20", ekipman: "Vücut Ağırlığı" },
-        { id: 45, isim: "Reverse Fly", zorluk: 1, set: "3x12-18", ekipman: "Vücut Ağırlığı" },
-        { id: 46, isim: "Bridge Hold", zorluk: 2, set: "3x30-60sn", ekipman: "Vücut Ağırlığı" },
-        { id: 47, isim: "Towel Pull-up", zorluk: 4, set: "3x5-8", ekipman: "Havlu + Bar" },
-        { id: 48, isim: "Door Pull", zorluk: 1, set: "3x10-15", ekipman: "Kapı Çerçevesi" },
-        { id: 49, isim: "Wall Handstand", zorluk: 3, set: "3x20-45sn", ekipman: "Duvar" },
-        { id: 50, isim: "Scapula Pull-up", zorluk: 2, set: "3x8-12", ekipman: "Pull-up Bar" }
-    ],
-    omuz: [
-        { id: 11, isim: "Military Press", zorluk: 3, set: "4x8-10", ekipman: "Barbell" },
-        { id: 12, isim: "Dumbbell Shoulder Press", zorluk: 2, set: "3x10-12", ekipman: "Dumbbell" },
-        { id: 13, isim: "Lateral Raise", zorluk: 1, set: "3x12-15", ekipman: "Dumbbell" },
-        { id: 14, isim: "Front Raise", zorluk: 1, set: "3x12-15", ekipman: "Dumbbell" },
-        { id: 15, isim: "Face Pull", zorluk: 2, set: "3x15-20", ekipman: "Cable/Direnç Bandı" },
-        { id: 51, isim: "Pike Push-up", zorluk: 2, set: "3x10-15", ekipman: "Vücut Ağırlığı" },
-        { id: 52, isim: "Handstand Push-up", zorluk: 4, set: "3x3-8", ekipman: "Duvar + Vücut Ağırlığı" },
-        { id: 53, isim: "Wall Angels", zorluk: 1, set: "3x15-20", ekipman: "Duvar" },
-        { id: 54, isim: "Arm Circles", zorluk: 1, set: "3x20 her yön", ekipman: "Vücut Ağırlığı" },
-        { id: 55, isim: "Y-T-W Raises", zorluk: 1, set: "3x12-15", ekipman: "Vücut Ağırlığı" },
-        { id: 56, isim: "Bottle/Water Jug Press", zorluk: 1, set: "3x12-18", ekipman: "Su Şişesi/Bidon" },
-        { id: 57, isim: "Chair Dips", zorluk: 2, set: "3x10-15", ekipman: "Sandalye" },
-        { id: 58, isim: "Wall Slide", zorluk: 1, set: "3x12-20", ekipman: "Duvar" },
-        { id: 59, isim: "Resistance Band Press", zorluk: 2, set: "3x12-18", ekipman: "Direnç Bandı" },
-        { id: 60, isim: "Doorway Stretch Hold", zorluk: 1, set: "3x30-45sn", ekipman: "Kapı Çerçevesi" }
-    ],
-    kol: [
-        { id: 16, isim: "Barbell Curl", zorluk: 2, set: "3x10-12", ekipman: "Barbell" },
-        { id: 17, isim: "Hammer Curl", zorluk: 1, set: "3x12-15", ekipman: "Dumbbell" },
-        { id: 18, isim: "Tricep Dips", zorluk: 3, set: "3x8-10", ekipman: "Paralel Bar/Sandalye" },
-        { id: 19, isim: "Cable Tricep Extension", zorluk: 2, set: "3x12-15", ekipman: "Cable Makinesi" },
-        { id: 20, isim: "Preacher Curl", zorluk: 2, set: "3x10-12", ekipman: "Preacher Bench + Barbell" },
-        { id: 61, isim: "Diamond Push-up", zorluk: 3, set: "3x8-12", ekipman: "Vücut Ağırlığı" },
-        { id: 62, isim: "Close Grip Push-up", zorluk: 2, set: "3x10-15", ekipman: "Vücut Ağırlığı" },
-        { id: 63, isim: "Tricep Push-up", zorluk: 2, set: "3x8-15", ekipman: "Vücut Ağırlığı" },
-        { id: 64, isim: "Wall Push-up (Tricep)", zorluk: 1, set: "3x12-20", ekipman: "Duvar" },
-        { id: 65, isim: "Bottle Curl", zorluk: 1, set: "3x15-25", ekipman: "Su Şişesi/Bidon" },
-        { id: 66, isim: "Isometric Bicep Hold", zorluk: 2, set: "3x20-40sn", ekipman: "Vücut Ağırlığı" },
-        { id: 67, isim: "Chair Tricep Dips", zorluk: 2, set: "3x10-18", ekipman: "Sandalye" },
-        { id: 68, isim: "Floor Tricep Press", zorluk: 2, set: "3x12-18", ekipman: "Vücut Ağırlığı" },
-        { id: 69, isim: "Resistance Band Curl", zorluk: 1, set: "3x15-25", ekipman: "Direnç Bandı" },
-        { id: 70, isim: "Towel Curl", zorluk: 2, set: "3x10-15", ekipman: "Havlu + Ayak" }
-    ],
-    bacak: [
-        { id: 21, isim: "Squat", zorluk: 3, set: "4x8-10", ekipman: "Barbell + Squat Rack" },
-        { id: 22, isim: "Leg Press", zorluk: 2, set: "3x10-12", ekipman: "Leg Press Makinesi" },
-        { id: 23, isim: "Leg Extension", zorluk: 1, set: "3x12-15", ekipman: "Leg Extension Makinesi" },
-        { id: 24, isim: "Romanian Deadlift", zorluk: 3, set: "4x8-10", ekipman: "Barbell/Dumbbell" },
-        { id: 25, isim: "Leg Curl", zorluk: 1, set: "3x12-15", ekipman: "Leg Curl Makinesi" },
-        { id: 71, isim: "Bodyweight Squat", zorluk: 1, set: "3x15-25", ekipman: "Vücut Ağırlığı" },
-        { id: 72, isim: "Jump Squat", zorluk: 2, set: "3x12-20", ekipman: "Vücut Ağırlığı" },
-        { id: 73, isim: "Lunges", zorluk: 2, set: "3x12-18", ekipman: "Vücut Ağırlığı" },
-        { id: 74, isim: "Bulgarian Split Squat", zorluk: 3, set: "3x10-15", ekipman: "Sandalye/Yüksek Yüzey" },
-        { id: 75, isim: "Single Leg Squat", zorluk: 4, set: "3x5-10", ekipman: "Vücut Ağırlığı" },
-        { id: 76, isim: "Wall Sit", zorluk: 2, set: "3x30-60sn", ekipman: "Duvar" },
-        { id: 77, isim: "Calf Raises", zorluk: 1, set: "3x20-30", ekipman: "Vücut Ağırlığı" },
-        { id: 78, isim: "Step-ups", zorluk: 2, set: "3x15-20", ekipman: "Merdiven/Kutu" },
-        { id: 79, isim: "Glute Bridge", zorluk: 1, set: "3x15-25", ekipman: "Vücut Ağırlığı" },
-        { id: 80, isim: "Single Leg Glute Bridge", zorluk: 2, set: "3x10-15", ekipman: "Vücut Ağırlığı" },
-        { id: 81, isim: "Curtsy Lunge", zorluk: 2, set: "3x12-18", ekipman: "Vücut Ağırlığı" },
-        { id: 82, isim: "Side Lunges", zorluk: 2, set: "3x12-18", ekipman: "Vücut Ağırlığı" },
-        { id: 83, isim: "Sumo Squat", zorluk: 2, set: "3x15-20", ekipman: "Vücut Ağırlığı" },
-        { id: 84, isim: "Duck Walk", zorluk: 3, set: "3x10-15 adım", ekipman: "Vücut Ağırlığı" }
-    ],
-    core: [
-        { id: 26, isim: "Plank", zorluk: 1, set: "3x60sn", ekipman: "Vücut Ağırlığı" },
-        { id: 27, isim: "Crunch", zorluk: 1, set: "3x20-25", ekipman: "Vücut Ağırlığı" },
-        { id: 28, isim: "Russian Twist", zorluk: 2, set: "3x15-20", ekipman: "Vücut Ağırlığı" },
-        { id: 29, isim: "Leg Raise", zorluk: 2, set: "3x10-15", ekipman: "Vücut Ağırlığı" },
-        { id: 30, isim: "Cable Crunch", zorluk: 2, set: "3x15-20", ekipman: "Cable Makinesi" },
-        { id: 85, isim: "Mountain Climbers", zorluk: 2, set: "3x20-30", ekipman: "Vücut Ağırlığı" },
-        { id: 86, isim: "Bicycle Crunches", zorluk: 1, set: "3x20-30", ekipman: "Vücut Ağırlığı" },
-        { id: 87, isim: "Dead Bug", zorluk: 1, set: "3x12-16", ekipman: "Vücut Ağırlığı" },
-        { id: 88, isim: "Bird Dog", zorluk: 1, set: "3x12-16", ekipman: "Vücut Ağırlığı" },
-        { id: 89, isim: "Side Plank", zorluk: 2, set: "3x30-45sn", ekipman: "Vücut Ağırlığı" },
-        { id: 90, isim: "Hollow Body Hold", zorluk: 3, set: "3x20-40sn", ekipman: "Vücut Ağırlığı" },
-        { id: 91, isim: "V-ups", zorluk: 3, set: "3x10-15", ekipman: "Vücut Ağırlığı" },
-        { id: 92, isim: "Reverse Crunch", zorluk: 2, set: "3x15-20", ekipman: "Vücut Ağırlığı" },
-        { id: 93, isim: "Flutter Kicks", zorluk: 2, set: "3x20-30", ekipman: "Vücut Ağırlığı" },
-        { id: 94, isim: "High Knees", zorluk: 1, set: "3x30sn", ekipman: "Vücut Ağırlığı" },
-        { id: 95, isim: "Burpees", zorluk: 3, set: "3x8-15", ekipman: "Vücut Ağırlığı" }
-    ]
+// Egzersiz veritabanını exercises.json'dan yükle
+let exerciseDB = {};
+
+// Gemini API yapılandırması
+const GEMINI_CONFIG = {
+    endpoint: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent',
+    key: 'AIzaSyB1wa6-CS079N_s8kH-t7VH4nbK-ccaPzg'
 };
-
-// AI API Sağlayıcıları
-const AI_PROVIDERS = [
-    {
-        name: 'Gemini',
-        endpoint: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent',
-        key: 'AIzaSyB1wa6-CS079N_s8kH-t7VH4nbK-ccaPzg',
-        enabled: true // AKTIF
+// Mevcut kodunuzun başında, GEMINI_CONFIG'den sonra bu konfigürasyonu ekleyin:
+const YOUTUBE_CONFIG = {
+    enabled: true, // API key olmadığı için false
+    apiKey: 'AIzaSyC5-ngZj5C5SG3FvNmEjmWORKH_Hl9LjW8\n', // Buraya gerçek API key gelecek
+    searchTerms: {
+        'bench press': 'bench press proper form technique',
+        'squat': 'squat proper form technique',
+        'deadlift': 'deadlift proper form technique',
+        // Daha fazla özel terim eklenebilir
     }
-];
+};
+// YouTube Video Yöneticisi
+class YouTubeVideoManager {
+    constructor() {
+        this.cache = {};
+        this.fallbackVideos = {
+            // Popüler egzersizler için önceden tanımlanmış video ID'leri
+            'push-up': 'IODxDxX7oi4',
+            'squat': 'YaXPRqUwItQ',
+            'plank': '5ER5Of4NbEg',
+            'pull-up': 'eGo4IYlbE5g',
+            'bench press': 'rT7DgCr-3pg',
+            'deadlift': 'VWixOpqJXh0',
+            'shoulder press': 'qEwKCR5JCog',
+            'bicep curl': 'ykJmrZ5v0Oo',
+            'tricep dips': 'yN6Q1UI_xkE',
+            'lunges': 'MxfTNXSFiYI'
+        };
+    }
 
-// Global değişkenler
+    async findExerciseVideo(exerciseName, exercise = null) {
+        const cacheKey = exerciseName.toLowerCase();
+
+        // Önbellekten kontrol et
+        if (this.cache[cacheKey]) {
+            return this.cache[cacheKey];
+        }
+
+        try {
+            // 1. Egzersizin kendi videoKey'ini kullan
+            let searchQuery = exerciseName;
+            if (exercise && exercise.videoKey) {
+                searchQuery = exercise.videoKey;
+            }
+
+            // 2. YouTube API ile arama yap
+            if (YOUTUBE_CONFIG.enabled && YOUTUBE_CONFIG.apiKey && !YOUTUBE_CONFIG.apiKey.includes('YOUR_')) {
+                const apiResult = await this.searchYouTubeAPI(searchQuery);
+                if (apiResult) {
+                    this.cache[cacheKey] = apiResult;
+                    return apiResult;
+                }
+            }
+
+            // 3. Fallback videolar
+            const fallbackVideo = this.getFallbackVideo(searchQuery);
+            if (fallbackVideo) {
+                this.cache[cacheKey] = fallbackVideo;
+                return fallbackVideo;
+            }
+
+            // 4. Genel arama URL'si oluştur
+            const searchResult = this.createSearchURL(searchQuery);
+            this.cache[cacheKey] = searchResult;
+            return searchResult;
+
+        } catch (error) {
+            console.error('Video arama hatası:', error);
+            return this.createSearchURL(exerciseName);
+        }
+    }
+
+    async searchYouTubeAPI(searchQuery, exercise = null) {
+        const finalQuery = this.createSearchQuery(searchQuery, exercise);
+
+        // API key kontrolü
+        if (!YOUTUBE_CONFIG || !YOUTUBE_CONFIG.apiKey || YOUTUBE_CONFIG.apiKey.includes('YOUR_')) {
+            throw new Error('YouTube API key not configured');
+        }
+
+        const url = `https://www.googleapis.com/youtube/v3/search?` +
+            `part=snippet&maxResults=3&q=${encodeURIComponent(finalQuery)}&` +
+            `type=video&videoDuration=medium&videoDefinition=high&` +
+            `relevanceLanguage=en&safeSearch=strict&key=${YOUTUBE_CONFIG.apiKey}`;
+
+        try {
+            const response = await fetch(url);
+            if (!response.ok) throw new Error('API yanıt hatası');
+
+            const data = await response.json();
+            if (data.items && data.items.length > 0) {
+                // En iyi videoyu seç (görüntülenme ve kalite bazında)
+                const bestVideo = data.items[0];
+                return {
+                    videoId: bestVideo.id.videoId,
+                    title: bestVideo.snippet.title,
+                    thumbnail: bestVideo.snippet.thumbnails.medium.url,
+                    channelTitle: bestVideo.snippet.channelTitle,
+                    embedUrl: `https://www.youtube.com/embed/${bestVideo.id.videoId}`,
+                    watchUrl: `https://www.youtube.com/watch?v=${bestVideo.id.videoId}`,
+                    source: 'api'
+                };
+            }
+        } catch (error) {
+            console.warn('YouTube API hatası:', error);
+            return null;
+        }
+        return null;
+    }
+
+    getFallbackVideo(exerciseName) {
+        const searchTerm = exerciseName.toLowerCase();
+
+        // Tam eşleşme ara
+        if (this.fallbackVideos[searchTerm]) {
+            return this.createVideoObject(this.fallbackVideos[searchTerm], exerciseName, 'fallback');
+        }
+
+        // Kısmi eşleşme ara
+        for (const [key, videoId] of Object.entries(this.fallbackVideos)) {
+            if (searchTerm.includes(key) || key.includes(searchTerm)) {
+                return this.createVideoObject(videoId, exerciseName, 'fallback');
+            }
+        }
+
+        return null;
+    }
+
+    createVideoObject(videoId, title, source = 'fallback') {
+        return {
+            videoId: videoId,
+            title: `${title} - Exercise Tutorial`,
+            thumbnail: `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`,
+            embedUrl: `https://www.youtube.com/embed/${videoId}`,
+            watchUrl: `https://www.youtube.com/watch?v=${videoId}`,
+            source: source
+        };
+    }
+
+    createSearchQuery(exerciseName, exercise = null) {
+        // Egzersizin kendi videoKey'ini kullan
+        let cleanName = exerciseName.toLowerCase();
+        if (exercise && exercise.videoKey) {
+            cleanName = exercise.videoKey.toLowerCase();
+        }
+
+        cleanName = cleanName
+            .replace(/[^\w\s]/g, '')
+            .replace(/\s+/g, ' ')
+            .trim();
+
+        // Özel arama terimleri varsa kullan
+        if (YOUTUBE_CONFIG && YOUTUBE_CONFIG.searchTerms && YOUTUBE_CONFIG.searchTerms[cleanName]) {
+            return YOUTUBE_CONFIG.searchTerms[cleanName];
+        }
+
+        // Genel format
+        return `${cleanName} exercise form technique tutorial proper`;
+    }
+
+    createSearchURL(exerciseName, exercise = null) {
+        const searchQuery = this.createSearchQuery(exerciseName, exercise);
+        return {
+            videoId: null,
+            title: `${exerciseName} - Video Arama`,
+            searchUrl: `https://www.youtube.com/results?search_query=${encodeURIComponent(searchQuery)}`,
+            watchUrl: `https://www.youtube.com/results?search_query=${encodeURIComponent(searchQuery)}`,
+            source: 'search'
+        };
+    }
+}
+
+// Global YouTube manager
+let youtubeManager = null;
 let currentUser = null;
 let selectedDay = null;
 let currentProgram = [];
 let currentExerciseContext = null;
 let aiSuggestions = [];
 let selectedSuggestions = [];
-let multiAI = null;
+let aiProvider = null;
 
-// Çoklu AI Sağlayıcısı
-class MultiAIProvider {
+// AI Sağlayıcı Sınıfı
+class AIProvider {
     constructor() {
-        this.providers = AI_PROVIDERS.filter(p => p.enabled);
-        this.currentProviderIndex = 0;
         this.lastUsedProvider = 'Simülasyon';
     }
 
     async generateResponse(userInput, exercise, userProfile) {
-        if (this.providers.length === 0) {
-            this.lastUsedProvider = 'Simülasyon';
-            return this.fallbackResponse(userInput, exercise, userProfile);
-        }
-
-        for (let i = 0; i < this.providers.length; i++) {
-            const provider = this.providers[this.currentProviderIndex];
-            this.currentProviderIndex = (this.currentProviderIndex + 1) % this.providers.length;
-
-            try {
-                const response = await this.callProvider(provider, userInput, exercise, userProfile);
+        // Önce Gemini'yi dene
+        try {
+            if (GEMINI_CONFIG.key && !GEMINI_CONFIG.key.includes('your-') && !GEMINI_CONFIG.key.includes('YOUR_')) {
+                const response = await this.callGemini(userInput, exercise, userProfile);
                 if (response) {
-                    this.lastUsedProvider = provider.name;
+                    this.lastUsedProvider = 'Gemini';
                     return response;
                 }
-            } catch (error) {
-                console.warn(`${provider.name} hatası:`, error.message);
             }
+        } catch (error) {
+            console.warn('Gemini hatası:', error.message);
         }
 
+        // Fallback simülasyon
         this.lastUsedProvider = 'Simülasyon';
         return this.fallbackResponse(userInput, exercise, userProfile);
     }
 
-// BONUS: Gemini'ye daha iyi prompt gönder
-    async callProvider(provider, userInput, exercise, userProfile) {
-        // API key kontrolü
-        if (!provider.key || provider.key.includes('your-') || provider.key.includes('YOUR_')) {
-            throw new Error(`${provider.name} API key eksik`);
-        }
-
-        // Gemini için özel prompt - alternatif egzersizleri önersin
-        const prompt = provider.name === 'Gemini'
-            ? `Sen deneyimli bir fitness koçusun. Kullanıcı profili: Tecrübe: ${userProfile?.tecrube || 'orta'}, Kilo: ${userProfile?.kilo || 70}kg, Boy: ${userProfile?.boy || 170}cm. 
+    async callGemini(userInput, exercise, userProfile) {
+        const prompt = `Sen deneyimli bir fitness koçusun. Kullanıcı profili: Tecrübe: ${userProfile?.tecrube || 'orta'}, Kilo: ${userProfile?.kilo || 70}kg, Boy: ${userProfile?.boy || 170}cm. 
 
 Mevcut egzersiz: ${exercise.isim}, Zorluk: ${exercise.zorluk}/5, Set: ${exercise.set}.
 
 Kullanıcının sorusuna kısa, net bir şekilde cevap ver. Eğer uygunsa, alternatif egzersizler de öner. 
 
-Mevcut kas grubu egzersizleri: ${this.getExercisesByMuscleGroup(exercise.kasGrubu).map(e => e.isim).join(', ')}`
-            : `Sen deneyimli bir fitness koçusun. Kullanıcı profili: Tecrübe: ${userProfile?.tecrube || 'orta'}, Kilo: ${userProfile?.kilo || 70}kg, Boy: ${userProfile?.boy || 170}cm. Egzersiz: ${exercise.isim}, Zorluk: ${exercise.zorluk}/5, Set: ${exercise.set}. Kısa, net öneriler ver.`;
+Mevcut kas grubu egzersizleri: ${this.getExercisesByMuscleGroup(exercise.kasGrubu).map(e => e.isim).join(', ')}`;
 
-        console.log(`🔄 ${provider.name} API'si deneniyor...`);
+        console.log('🔄 Gemini API çağrısı yapılıyor...');
 
-        if (provider.name === 'Gemini') {
-            return await this.callGemini(provider, prompt, userInput);
-        } else if (provider.name === 'DeepSeek' || provider.name === 'Groq') {
-            return await this.callChatAPI(provider, prompt, userInput);
-        }
-    }
-
-// Yardımcı fonksiyon - kas grubuna göre egzersizleri getir
-    getExercisesByMuscleGroup(kasGrubu) {
-        return exerciseDB[kasGrubu] || [];
-    }
-    async callGemini(provider, systemPrompt, userInput) {
-        console.log(`📡 Gemini API çağrısı yapılıyor...`);
-
-        const response = await fetch(`${provider.endpoint}?key=${provider.key}`, {
+        const response = await fetch(`${GEMINI_CONFIG.endpoint}?key=${GEMINI_CONFIG.key}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                contents: [{ parts: [{ text: `${systemPrompt}\n\nKullanıcı: ${userInput}` }] }],
+                contents: [{ parts: [{ text: `${prompt}\n\nKullanıcı: ${userInput}` }] }],
                 generationConfig: { temperature: 0.7, maxOutputTokens: 500 }
             })
         });
-
-        console.log(`📊 Gemini yanıt durumu: ${response.status}`);
 
         if (!response.ok) {
             const errorText = await response.text();
@@ -217,67 +244,26 @@ Mevcut kas grubu egzersizleri: ${this.getExercisesByMuscleGroup(exercise.kasGrub
         }
 
         const data = await response.json();
-        console.log(`📦 Gemini yanıtı:`, data);
-
         const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
 
         if (!text) {
-            console.error(`❌ Gemini boş yanıt`, data);
+            console.error('❌ Gemini boş yanıt', data);
             throw new Error('Gemini yanıt vermedi');
         }
 
-        console.log(`✅ Gemini başarılı: ${text.substring(0, 50)}...`);
+        console.log('✅ Gemini başarılı');
 
-        // ÖNEMLİ: Gemini için de suggestions oluştur
         return {
             response: text,
-            suggestions: this.extractSuggestions(text) // Bu satır EKSİKTİ!
+            suggestions: this.extractSuggestions(text, exercise)
         };
     }
-    async callChatAPI(provider, systemPrompt, userInput) {
-        console.log(`📡 ${provider.name} API çağrısı yapılıyor...`);
 
-        const response = await fetch(provider.endpoint, {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${provider.key}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                model: provider.name === 'DeepSeek' ? 'deepseek-chat' :
-                    provider.name === 'Groq' ? 'llama3-8b-8192' : 'gpt-3.5-turbo',
-                messages: [
-                    { role: "system", content: systemPrompt },
-                    { role: "user", content: userInput }
-                ],
-                temperature: 0.7,
-                max_tokens: 500
-            })
-        });
-
-        console.log(`📊 ${provider.name} yanıt durumu: ${response.status}`);
-
-        if (!response.ok) {
-            const errorText = await response.text();
-            console.error(`❌ ${provider.name} hatası: ${response.status} - ${errorText}`);
-            throw new Error(`${provider.name} error: ${response.status}`);
-        }
-
-        const data = await response.json();
-        console.log(`📦 ${provider.name} yanıtı:`, data);
-
-        const text = data.choices?.[0]?.message?.content;
-
-        if (!text) {
-            console.error(`❌ ${provider.name} boş yanıt`, data);
-            throw new Error(`${provider.name} yanıt vermedi`);
-        }
-
-        console.log(`✅ ${provider.name} başarılı: ${text.substring(0, 50)}...`);
-        return { response: text, suggestions: this.extractSuggestions(text) };
+    getExercisesByMuscleGroup(kasGrubu) {
+        return exerciseDB[kasGrubu] || [];
     }
 
-    extractSuggestions(text) {
+    extractSuggestions(text, currentExercise) {
         const suggestions = [];
         const exerciseNames = Object.values(exerciseDB).flat().map(e => e.isim.toLowerCase());
 
@@ -295,25 +281,11 @@ Mevcut kas grubu egzersizleri: ${this.getExercisesByMuscleGroup(exercise.kasGrub
         });
 
         // Eğer metin içinde egzersiz bulunamazsa, mevcut egzersizle aynı kas grubundan alternatifler öner
-        if (suggestions.length === 0 && currentExerciseContext?.exercise) {
-            const currentExercise = currentExerciseContext.exercise;
+        if (suggestions.length === 0 && currentExercise?.kasGrubu) {
             const kasGrubu = currentExercise.kasGrubu;
 
             if (kasGrubu && exerciseDB[kasGrubu]) {
-                // Kullanıcının sorduğu soruya göre alternatif seç
-                const input = text.toLowerCase();
                 let filteredExercises = exerciseDB[kasGrubu].filter(e => e.id !== currentExercise.id);
-
-                if (input.includes('kolay') || input.includes('easy')) {
-                    // Daha zor egzersizler öner
-                    filteredExercises = filteredExercises.filter(e => e.zorluk > currentExercise.zorluk);
-                } else if (input.includes('zor') || input.includes('difficult') || input.includes('ağrı')) {
-                    // Daha kolay egzersizler öner
-                    filteredExercises = filteredExercises.filter(e => e.zorluk < currentExercise.zorluk);
-                } else if (input.includes('alternatif') || input.includes('alternative')) {
-                    // Aynı zorluk seviyesinden öner
-                    filteredExercises = filteredExercises.filter(e => e.zorluk === currentExercise.zorluk);
-                }
 
                 // Rastgele 3 tane seç
                 shuffleArray(filteredExercises);
@@ -324,7 +296,7 @@ Mevcut kas grubu egzersizleri: ${this.getExercisesByMuscleGroup(exercise.kasGrub
             }
         }
 
-        return suggestions.slice(0, 3); // Max 3 öneri
+        return suggestions.slice(0, 3);
     }
 
     fallbackResponse(userInput, exercise, userProfile) {
@@ -349,7 +321,6 @@ Mevcut kas grubu egzersizleri: ${this.getExercisesByMuscleGroup(exercise.kasGrub
         return { response, suggestions };
     }
 
-    // Alternatif egzersiz fonksiyonları
     getSafeAlternatives(exercise) {
         const kasGrubu = exercise.kasGrubu;
         if (!kasGrubu) return [];
@@ -402,18 +373,80 @@ Mevcut kas grubu egzersizleri: ${this.getExercisesByMuscleGroup(exercise.kasGrub
                 reason: 'Çeşitlilik için alternatif'
             }));
     }
+}
 
+// Egzersiz veritabanını yükle
+async function loadExerciseDatabase() {
+    try {
+        // exercises.json dosyasını yükle
+        const response = await fetch('exercises.json');
+        if (!response.ok) {
+            throw new Error('JSON dosyası yüklenemedi');
+        }
+        exerciseDB = await response.json();
+        console.log('✅ Egzersiz veritabanı yüklendi');
+    } catch (error) {
+        console.warn('⚠️ JSON yüklenemedi, varsayılan veri kullanılıyor');
+        // Varsayılan egzersiz veritabanı
+        exerciseDB = {
+            gogus: [
+                { id: 1, isim: "Barbell Bench Press", zorluk: 3, set: "4x8-10", ekipman: "Barbell + Bench" },
+                { id: 2, isim: "Dumbbell Press", zorluk: 2, set: "3x10-12", ekipman: "Dumbbell + Bench" },
+                { id: 3, isim: "Push-up", zorluk: 1, set: "3x15-20", ekipman: "Vücut Ağırlığı" },
+                { id: 4, isim: "Cable Fly", zorluk: 2, set: "3x12-15", ekipman: "Cable Makinesi" },
+                { id: 5, isim: "Incline Dumbbell Press", zorluk: 2, set: "3x10-12", ekipman: "Dumbbell + İncline Bench" }
+            ],
+            sirt: [
+                { id: 6, isim: "Pull-up", zorluk: 3, set: "4x6-8", ekipman: "Pull-up Bar" },
+                { id: 7, isim: "Lat Pulldown", zorluk: 2, set: "3x10-12", ekipman: "Lat Pulldown Makinesi" },
+                { id: 8, isim: "Barbell Row", zorluk: 3, set: "4x8-10", ekipman: "Barbell" },
+                { id: 9, isim: "Cable Row", zorluk: 2, set: "3x12-15", ekipman: "Cable Makinesi" },
+                { id: 10, isim: "T-Bar Row", zorluk: 2, set: "3x10-12", ekipman: "T-Bar/Barbell" }
+            ],
+            omuz: [
+                { id: 11, isim: "Military Press", zorluk: 3, set: "4x8-10", ekipman: "Barbell" },
+                { id: 12, isim: "Dumbbell Shoulder Press", zorluk: 2, set: "3x10-12", ekipman: "Dumbbell" },
+                { id: 13, isim: "Lateral Raise", zorluk: 1, set: "3x12-15", ekipman: "Dumbbell" },
+                { id: 14, isim: "Front Raise", zorluk: 1, set: "3x12-15", ekipman: "Dumbbell" },
+                { id: 15, isim: "Face Pull", zorluk: 2, set: "3x15-20", ekipman: "Cable/Direnç Bandı" }
+            ],
+            kol: [
+                { id: 16, isim: "Barbell Curl", zorluk: 2, set: "3x10-12", ekipman: "Barbell" },
+                { id: 17, isim: "Hammer Curl", zorluk: 1, set: "3x12-15", ekipman: "Dumbbell" },
+                { id: 18, isim: "Tricep Dips", zorluk: 3, set: "3x8-10", ekipman: "Paralel Bar/Sandalye" },
+                { id: 19, isim: "Cable Tricep Extension", zorluk: 2, set: "3x12-15", ekipman: "Cable Makinesi" },
+                { id: 20, isim: "Preacher Curl", zorluk: 2, set: "3x10-12", ekipman: "Preacher Bench + Barbell" }
+            ],
+            bacak: [
+                { id: 21, isim: "Squat", zorluk: 3, set: "4x8-10", ekipman: "Barbell + Squat Rack" },
+                { id: 22, isim: "Leg Press", zorluk: 2, set: "3x10-12", ekipman: "Leg Press Makinesi" },
+                { id: 23, isim: "Leg Extension", zorluk: 1, set: "3x12-15", ekipman: "Leg Extension Makinesi" },
+                { id: 24, isim: "Romanian Deadlift", zorluk: 3, set: "4x8-10", ekipman: "Barbell/Dumbbell" },
+                { id: 25, isim: "Leg Curl", zorluk: 1, set: "3x12-15", ekipman: "Leg Curl Makinesi" }
+            ],
+            core: [
+                { id: 26, isim: "Plank", zorluk: 1, set: "3x60sn", ekipman: "Vücut Ağırlığı" },
+                { id: 27, isim: "Crunch", zorluk: 1, set: "3x20-25", ekipman: "Vücut Ağırlığı" },
+                { id: 28, isim: "Russian Twist", zorluk: 2, set: "3x15-20", ekipman: "Vücut Ağırlığı" },
+                { id: 29, isim: "Leg Raise", zorluk: 2, set: "3x10-15", ekipman: "Vücut Ağırlığı" },
+                { id: 30, isim: "Cable Crunch", zorluk: 2, set: "3x15-20", ekipman: "Cable Makinesi" }
+            ]
+        };
+    }
 }
 
 // Ana başlatma fonksiyonu
-window.onload = function() {
+window.onload = async function() {
+    await loadExerciseDatabase();
+
     checkAuth();
     loadUserData();
     displayWeekView();
     displayCurrentWeek();
     initializeEventListeners();
 
-    multiAI = new MultiAIProvider();
+    aiProvider = new AIProvider();
+    youtubeManager = new YouTubeVideoManager(); // YouTube manager'ı başlat
 
     setTimeout(() => {
         addQuickResponseButtons();
@@ -568,10 +601,16 @@ function showBottomSheet(gun) {
                             <div class="exercise-name">${egz.isim}</div>
                             <div class="exercise-sets">${egz.set}</div>
                         </div>
-                        <button class="difficulty-btn" onclick="reportDifficult(${egz.id}, '${gun}')">
-                            <span class="chat-icon">💬</span>
-                            AI Koç
-                        </button>
+                        <div class="exercise-actions">
+                            <button class="video-btn" onclick="showExerciseVideo(${egz.id}, '${egz.isim}')" title="Video İzle">
+                                <span class="video-icon">🎥</span>
+                                Video
+                            </button>
+                            <button class="difficulty-btn" onclick="reportDifficult(${egz.id}, '${gun}')">
+                                <span class="chat-icon">💬</span>
+                                AI Koç
+                            </button>
+                        </div>
                     </div>
                 `).join('')}
             </div>
@@ -769,7 +808,174 @@ function shuffleArray(array) {
     return array;
 }
 
-// AI Chat
+// Video gösterme fonksiyonları
+async function showExerciseVideo(exerciseId, exerciseName) {
+    const videoModal = document.getElementById('videoModal');
+    const videoTitle = document.getElementById('videoTitle');
+    const videoContent = document.getElementById('videoContent');
+    const loadingSpinner = document.getElementById('videoLoading');
+
+    // Modal'ı aç ve loading göster
+    videoModal.classList.add('show');
+    videoTitle.textContent = `${exerciseName} - Video`;
+    videoContent.style.display = 'none';
+    loadingSpinner.style.display = 'block';
+
+    try {
+        // Egzersiz objesini bul (videoKey için)
+        const exercise = findExerciseById(exerciseId);
+
+        // Video bul
+        const videoData = await youtubeManager.findExerciseVideo(exerciseName, exercise);
+
+        loadingSpinner.style.display = 'none';
+        videoContent.style.display = 'block';
+
+        if (videoData.videoId && videoData.embedUrl) {
+            // YouTube embed player
+            videoContent.innerHTML = `
+                <div class="video-player">
+                    <iframe 
+                        width="100%" 
+                        height="280" 
+                        src="${videoData.embedUrl}?autoplay=0&rel=0&modestbranding=1"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="video-info">
+                    <h4>${videoData.title}</h4>
+                    ${videoData.channelTitle ? `<p class="channel">Kanal: ${videoData.channelTitle}</p>` : ''}
+                    <div class="video-actions">
+                        <a href="${videoData.watchUrl}" target="_blank" class="watch-youtube-btn">
+                            🎬 YouTube'da İzle
+                        </a>
+                        <button class="find-more-btn" onclick="findMoreVideos('${exerciseName}', ${exerciseId})">
+                            🔍 Daha Fazla Video
+                        </button>
+                    </div>
+                </div>
+            `;
+        } else if (videoData.searchUrl) {
+            // Arama sonucu
+            videoContent.innerHTML = `
+                <div class="no-video-found">
+                    <div class="no-video-icon">🎥</div>
+                    <h4>Video Bulunamadı</h4>
+                    <p>${exerciseName} için doğrudan video bulamadım</p>
+                    <div class="video-actions">
+                        <a href="${videoData.searchUrl}" target="_blank" class="search-youtube-btn">
+                            🔍 YouTube'da Ara
+                        </a>
+                        <button class="ai-help-btn" onclick="askAIForVideo('${exerciseName}', ${exerciseId})">
+                            🤖 AI'dan Yardım Al
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Modal açıldıktan sonra scroll'u engelle
+        document.body.style.overflow = 'hidden';
+
+    } catch (error) {
+        loadingSpinner.style.display = 'none';
+        videoContent.style.display = 'block';
+        videoContent.innerHTML = `
+            <div class="video-error">
+                <div class="error-icon">⚠️</div>
+                <h4>Video Yüklenemedi</h4>
+                <p>Bağlantı sorunu yaşanıyor</p>
+                <button onclick="retryVideoSearch('${exerciseName}', ${exerciseId})" class="retry-btn">
+                    🔄 Tekrar Dene
+                </button>
+            </div>
+        `;
+        console.error('Video yükleme hatası:', error);
+    }
+}
+
+function closeVideoModal() {
+    const videoModal = document.getElementById('videoModal');
+    const videoContent = document.getElementById('videoContent');
+
+    videoModal.classList.remove('show');
+    document.body.style.overflow = '';
+
+    // Video iframe'ini temizle (otomatik oynatmayı durdur)
+    setTimeout(() => {
+        videoContent.innerHTML = '';
+    }, 300);
+}
+
+async function findMoreVideos(exerciseName, exerciseId = null) {
+    let searchQuery = `${exerciseName} exercise tutorial form technique`;
+
+    // Egzersiz ID'si varsa, videoKey'i kullan
+    if (exerciseId) {
+        const exercise = findExerciseById(exerciseId);
+        if (exercise && exercise.videoKey) {
+            searchQuery = `${exercise.videoKey} exercise tutorial form technique`;
+        }
+    }
+
+    const youtubeSearchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(searchQuery)}`;
+    window.open(youtubeSearchUrl, '_blank');
+}
+
+async function askAIForVideo(exerciseName, exerciseId = null) {
+    // Video bulunamadığında AI chat'i aç ve otomatik soru sor
+    closeVideoModal();
+
+    setTimeout(() => {
+        let exercise = null;
+        if (exerciseId) {
+            exercise = findExerciseById(exerciseId);
+        } else {
+            exercise = findExerciseByName(exerciseName);
+        }
+
+        if (exercise) {
+            currentExerciseContext = {
+                exerciseId: exercise.id,
+                gun: selectedDay,
+                exercise: exercise
+            };
+            openChatModal();
+
+            // Otomatik soru gönder
+            setTimeout(() => {
+                const chatInput = document.getElementById('chatInput');
+                chatInput.value = `${exerciseName} hareketini nasıl yapacağımı anlat ve hangi videolara bakabilirim?`;
+                sendChatMessage();
+            }, 500);
+        }
+    }, 300);
+}
+
+async function retryVideoSearch(exerciseName, exerciseId = null) {
+    // Cache'i temizle ve tekrar ara
+    const cacheKey = exerciseName.toLowerCase();
+    delete youtubeManager.cache[cacheKey];
+
+    if (exerciseId) {
+        showExerciseVideo(exerciseId, exerciseName);
+    } else {
+        const exercise = findExerciseByName(exerciseName);
+        if (exercise) {
+            showExerciseVideo(exercise.id, exerciseName);
+        }
+    }
+}
+
+function findExerciseByName(name) {
+    for (const [grup, exercises] of Object.entries(exerciseDB)) {
+        const found = exercises.find(e => e.isim === name);
+        if (found) return { ...found, kasGrubu: grup };
+    }
+    return null;
+}
 function reportDifficult(exerciseId, gun) {
     currentExerciseContext = {
         exerciseId: exerciseId,
@@ -847,14 +1053,14 @@ async function sendChatMessage() {
     showTypingIndicator();
 
     try {
-        const analysis = await multiAI.generateResponse(
+        const analysis = await aiProvider.generateResponse(
             message,
             currentExerciseContext.exercise,
             currentUser.profile
         );
 
         removeTypingIndicator();
-        addChatMessage('ai', analysis.response, multiAI.lastUsedProvider);
+        addChatMessage('ai', analysis.response, aiProvider.lastUsedProvider);
 
         if (analysis.suggestions && analysis.suggestions.length > 0) {
             aiSuggestions = analysis.suggestions;
@@ -1121,9 +1327,21 @@ function initializeEventListeners() {
         backdrop.addEventListener('click', closeBottomSheet);
     }
 
+    // Video modal
+    const videoModal = document.getElementById('videoModal');
+    if (videoModal) {
+        videoModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeVideoModal();
+            }
+        });
+    }
+
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
-            if (document.getElementById('aiChatModal')?.classList.contains('show')) {
+            if (document.getElementById('videoModal')?.classList.contains('show')) {
+                closeVideoModal();
+            } else if (document.getElementById('aiChatModal')?.classList.contains('show')) {
                 closeChatModal();
             } else if (document.getElementById('bottomSheet')?.classList.contains('show')) {
                 closeBottomSheet();
@@ -1143,5 +1361,5 @@ function initializeEventListeners() {
 }
 
 // ==========================================
-// KOD SONU - HATASIZ VERSİYON
+// KOD SONU - SADELEŞTİRİLMİŞ VERSİYON
 // ==========================================
