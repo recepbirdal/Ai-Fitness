@@ -1,0 +1,964 @@
+{
+  "gogus": [
+    { 
+      "id": 1, 
+      "isim": "Barbell Bench Press", 
+      "zorluk": 4, 
+      "set": "4x8-10", 
+      "ekipman": "Barbell + Bench", 
+      "videoKey": "bench press",
+      "aciklama": "Sırt üstü yatar pozisyonda, barbell'i göğüs seviyesine indirip yukarı itin",
+      "kasGruplari": ["Pectoralis Major", "Anterior Deltoid", "Triceps Brachii"]
+    },
+    { 
+      "id": 2, 
+      "isim": "Dumbbell Press", 
+      "zorluk": 3, 
+      "set": "3x10-12", 
+      "ekipman": "Dumbbell + Bench", 
+      "videoKey": "dumbbell press",
+      "aciklama": "Her iki elde dumbbell tutarak göğüs seviyesine indirip yukarı itin",
+      "kasGruplari": ["Pectoralis Major", "Anterior Deltoid", "Triceps Brachii"]
+    },
+    { 
+      "id": 3, 
+      "isim": "Push-up", 
+      "zorluk": 2, 
+      "set": "3x15-20", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "push-up",
+      "aciklama": "Plank pozisyonunda, vücudu düz tutarak yukarı aşağı hareket edin",
+      "kasGruplari": ["Pectoralis Major", "Anterior Deltoid", "Triceps Brachii", "Core"]
+    },
+    { 
+      "id": 4, 
+      "isim": "Cable Fly", 
+      "zorluk": 3, 
+      "set": "3x12-15", 
+      "ekipman": "Cable Makinesi", 
+      "videoKey": "cable fly",
+      "aciklama": "Kolları açık tutarak cable'ları göğüs ortasında birleştirin",
+      "kasGruplari": ["Pectoralis Major", "Anterior Deltoid"]
+    },
+    { 
+      "id": 5, 
+      "isim": "Incline Dumbbell Press", 
+      "zorluk": 3, 
+      "set": "3x10-12", 
+      "ekipman": "Dumbbell + İncline Bench", 
+      "videoKey": "incline press",
+      "aciklama": "45° eğimli bench'te, dumbbell'ları yukarı doğru itin",
+      "kasGruplari": ["Pectoralis Major (Upper)", "Anterior Deltoid", "Triceps Brachii"]
+    },
+    { 
+      "id": 31, 
+      "isim": "Diamond Push-up", 
+      "zorluk": 4, 
+      "set": "3x8-12", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "diamond push up",
+      "aciklama": "Eller elmas şeklinde birleştirilerek yapılan push-up",
+      "kasGruplari": ["Triceps Brachii", "Pectoralis Major", "Anterior Deltoid"]
+    },
+    { 
+      "id": 32, 
+      "isim": "Decline Push-up", 
+      "zorluk": 3, 
+      "set": "3x10-15", 
+      "ekipman": "Vücut Ağırlığı + Yüksek Yüzey", 
+      "videoKey": "decline push up",
+      "aciklama": "Ayaklar yüksek yüzeyde, eller yerde push-up yapın",
+      "kasGruplari": ["Pectoralis Major (Upper)", "Anterior Deltoid", "Triceps Brachii"]
+    },
+    { 
+      "id": 33, 
+      "isim": "Wide Grip Push-up", 
+      "zorluk": 2, 
+      "set": "3x12-15", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "wide push up",
+      "aciklama": "Eller omuz genişliğinden geniş tutularak yapılan push-up",
+      "kasGruplari": ["Pectoralis Major", "Anterior Deltoid", "Triceps Brachii"]
+    },
+    { 
+      "id": 34, 
+      "isim": "Chest Dips", 
+      "zorluk": 4, 
+      "set": "3x8-12", 
+      "ekipman": "Paralel Bar/Sandalye", 
+      "videoKey": "chest dips",
+      "aciklama": "Vücut hafif öne eğik, paralel barlarda aşağı yukarı hareket",
+      "kasGruplari": ["Pectoralis Major (Lower)", "Triceps Brachii", "Anterior Deltoid"]
+    },
+    { 
+      "id": 35, 
+      "isim": "Single Arm Push-up", 
+      "zorluk": 5, 
+      "set": "3x5-8", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "one arm push up",
+      "aciklama": "Tek elle yapılan ileri seviye push-up hareketi",
+      "kasGruplari": ["Pectoralis Major", "Triceps Brachii", "Core", "Anterior Deltoid"]
+    },
+    { 
+      "id": 36, 
+      "isim": "Archer Push-up", 
+      "zorluk": 5, 
+      "set": "3x6-10", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "archer push up",
+      "aciklama": "Tek tarafa yüklenme yaparak tek kol push-up'a hazırlık",
+      "kasGruplari": ["Pectoralis Major", "Triceps Brachii", "Core", "Anterior Deltoid"]
+    },
+    { 
+      "id": 37, 
+      "isim": "Hindu Push-up", 
+      "zorluk": 3, 
+      "set": "3x8-15", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "hindu push up",
+      "aciklama": "Downward dog pozisyonundan diving hareketi ile push-up",
+      "kasGruplari": ["Pectoralis Major", "Anterior Deltoid", "Triceps Brachii", "Core"]
+    },
+    { 
+      "id": 38, 
+      "isim": "Pike Push-up", 
+      "zorluk": 4, 
+      "set": "3x8-12", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "pike push up",
+      "aciklama": "V şeklinde duruş, eller ve ayaklar yerde, omuz press hareketi",
+      "kasGruplari": ["Anterior Deltoid", "Triceps Brachii", "Pectoralis Major (Upper)"]
+    },
+    { 
+      "id": 39, 
+      "isim": "Wall Push-up", 
+      "zorluk": 1, 
+      "set": "3x15-25", 
+      "ekipman": "Duvar", 
+      "videoKey": "wall push up",
+      "aciklama": "Duvara karşı ayakta yapılan başlangıç seviyesi push-up",
+      "kasGruplari": ["Pectoralis Major", "Anterior Deltoid", "Triceps Brachii"]
+    },
+    { 
+      "id": 40, 
+      "isim": "Incline Push-up", 
+      "zorluk": 1, 
+      "set": "3x12-20", 
+      "ekipman": "Yüksek Yüzey", 
+      "videoKey": "incline push up",
+      "aciklama": "Eller yüksek yüzeyde, ayaklar yerde push-up",
+      "kasGruplari": ["Pectoralis Major", "Anterior Deltoid", "Triceps Brachii"]
+    }
+  ],
+  "sirt": [
+    { 
+      "id": 6, 
+      "isim": "Pull-up", 
+      "zorluk": 4, 
+      "set": "4x6-8", 
+      "ekipman": "Pull-up Bar", 
+      "videoKey": "pull up",
+      "aciklama": "Bardan asılarak vücudu yukarı çekin, çene bar seviyesine gelsin",
+      "kasGruplari": ["Latissimus Dorsi", "Rhomboids", "Biceps Brachii", "Posterior Deltoid"]
+    },
+    { 
+      "id": 7, 
+      "isim": "Lat Pulldown", 
+      "zorluk": 2, 
+      "set": "3x10-12", 
+      "ekipman": "Lat Pulldown Makinesi", 
+      "videoKey": "lat pulldown",
+      "aciklama": "Oturur pozisyonda barı göğüs seviyesine çekin",
+      "kasGruplari": ["Latissimus Dorsi", "Rhomboids", "Biceps Brachii", "Posterior Deltoid"]
+    },
+    { 
+      "id": 8, 
+      "isim": "Barbell Row", 
+      "zorluk": 4, 
+      "set": "4x8-10", 
+      "ekipman": "Barbell", 
+      "videoKey": "barbell row",
+      "aciklama": "Eğilmiş duruşta barbell'i karın/göğüs altına çekin",
+      "kasGruplari": ["Latissimus Dorsi", "Rhomboids", "Middle Trapezius", "Posterior Deltoid", "Biceps Brachii"]
+    },
+    { 
+      "id": 9, 
+      "isim": "Cable Row", 
+      "zorluk": 2, 
+      "set": "3x12-15", 
+      "ekipman": "Cable Makinesi", 
+      "videoKey": "cable row",
+      "aciklama": "Oturur pozisyonda cable'ı karına doğru çekin",
+      "kasGruplari": ["Latissimus Dorsi", "Rhomboids", "Middle Trapezius", "Posterior Deltoid", "Biceps Brachii"]
+    },
+    { 
+      "id": 10, 
+      "isim": "T-Bar Row", 
+      "zorluk": 3, 
+      "set": "3x10-12", 
+      "ekipman": "T-Bar/Barbell", 
+      "videoKey": "t bar row",
+      "aciklama": "T-bar aparatıyla eğilmiş duruşta çekme hareketi",
+      "kasGruplari": ["Latissimus Dorsi", "Rhomboids", "Middle Trapezius", "Posterior Deltoid"]
+    },
+    { 
+      "id": 41, 
+      "isim": "Chin-up", 
+      "zorluk": 4, 
+      "set": "3x6-10", 
+      "ekipman": "Pull-up Bar", 
+      "videoKey": "chin up",
+      "aciklama": "Avuç içleri size dönük grip ile pull-up",
+      "kasGruplari": ["Latissimus Dorsi", "Biceps Brachii", "Rhomboids", "Posterior Deltoid"]
+    },
+    { 
+      "id": 42, 
+      "isim": "Negative Pull-up", 
+      "zorluk": 3, 
+      "set": "3x5-8", 
+      "ekipman": "Pull-up Bar + Yardım", 
+      "videoKey": "negative pull up",
+      "aciklama": "Yardımla yukarı çıkıp yavaşça aşağı inme hareketi",
+      "kasGruplari": ["Latissimus Dorsi", "Rhomboids", "Biceps Brachii", "Posterior Deltoid"]
+    },
+    { 
+      "id": 43, 
+      "isim": "Inverted Row", 
+      "zorluk": 2, 
+      "set": "3x10-15", 
+      "ekipman": "Düşük Bar/Masa", 
+      "videoKey": "inverted row",
+      "aciklama": "Bar altında yatar pozisyonda vücudu yukarı çekin",
+      "kasGruplari": ["Latissimus Dorsi", "Rhomboids", "Middle Trapezius", "Posterior Deltoid", "Biceps Brachii"]
+    },
+    { 
+      "id": 44, 
+      "isim": "Superman", 
+      "zorluk": 1, 
+      "set": "3x15-20", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "superman exercise",
+      "aciklama": "Yüzüstü yatarak kol ve bacakları aynı anda kaldırın",
+      "kasGruplari": ["Erector Spinae", "Gluteus Maximus", "Posterior Deltoid", "Lower Trapezius"]
+    },
+    { 
+      "id": 45, 
+      "isim": "Reverse Fly", 
+      "zorluk": 1, 
+      "set": "3x12-18", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "reverse fly",
+      "aciklama": "Kolları yana açarak omuz arkası kaslarını çalıştırın",
+      "kasGruplari": ["Posterior Deltoid", "Rhomboids", "Middle Trapezius"]
+    },
+    { 
+      "id": 46, 
+      "isim": "Bridge Hold", 
+      "zorluk": 2, 
+      "set": "3x30-60sn", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "bridge hold",
+      "aciklama": "Sırt üstü yatar pozisyonda kalçayı kaldırıp tutun",
+      "kasGruplari": ["Gluteus Maximus", "Hamstrings", "Erector Spinae", "Core"]
+    },
+    { 
+      "id": 47, 
+      "isim": "Towel Pull-up", 
+      "zorluk": 5, 
+      "set": "3x5-8", 
+      "ekipman": "Havlu + Bar", 
+      "videoKey": "towel pull up",
+      "aciklama": "Havlu vasıtasıyla grip gücünü de çalıştıran pull-up",
+      "kasGruplari": ["Latissimus Dorsi", "Rhomboids", "Biceps Brachii", "Forearm Flexors"]
+    },
+    { 
+      "id": 48, 
+      "isim": "Door Pull", 
+      "zorluk": 1, 
+      "set": "3x10-15", 
+      "ekipman": "Kapı Çerçevesi", 
+      "videoKey": "door pull exercise",
+      "aciklama": "Kapı çerçevesine tutunarak basit çekme hareketi",
+      "kasGruplari": ["Latissimus Dorsi", "Rhomboids", "Biceps Brachii"]
+    },
+    { 
+      "id": 49, 
+      "isim": "Wall Handstand", 
+      "zorluk": 4, 
+      "set": "3x20-45sn", 
+      "ekipman": "Duvar", 
+      "videoKey": "wall handstand",
+      "aciklama": "Duvara dayalı el üstünde durma pozisyonu",
+      "kasGruplari": ["Anterior Deltoid", "Triceps Brachii", "Upper Trapezius", "Core"]
+    },
+    { 
+      "id": 50, 
+      "isim": "Scapula Pull-up", 
+      "zorluk": 2, 
+      "set": "3x8-12", 
+      "ekipman": "Pull-up Bar", 
+      "videoKey": "scapula pull up",
+      "aciklama": "Sadece omuz bıçakları hareket ettirilerek mini pull-up",
+      "kasGruplari": ["Lower Trapezius", "Rhomboids", "Serratus Anterior"]
+    }
+  ],
+  "omuz": [
+    { 
+      "id": 11, 
+      "isim": "Military Press", 
+      "zorluk": 4, 
+      "set": "4x8-10", 
+      "ekipman": "Barbell", 
+      "videoKey": "military press",
+      "aciklama": "Ayakta barbell'i omuz seviyesinden baş üstüne itin",
+      "kasGruplari": ["Anterior Deltoid", "Medial Deltoid", "Triceps Brachii", "Upper Trapezius"]
+    },
+    { 
+      "id": 12, 
+      "isim": "Dumbbell Shoulder Press", 
+      "zorluk": 3, 
+      "set": "3x10-12", 
+      "ekipman": "Dumbbell", 
+      "videoKey": "shoulder press",
+      "aciklama": "Her iki elde dumbbell tutarak baş üstüne itin",
+      "kasGruplari": ["Anterior Deltoid", "Medial Deltoid", "Triceps Brachii"]
+    },
+    { 
+      "id": 13, 
+      "isim": "Lateral Raise", 
+      "zorluk": 2, 
+      "set": "3x12-15", 
+      "ekipman": "Dumbbell", 
+      "videoKey": "lateral raise",
+      "aciklama": "Kolları yana doğru omuz seviyesine kaldırın",
+      "kasGruplari": ["Medial Deltoid", "Anterior Deltoid"]
+    },
+    { 
+      "id": 14, 
+      "isim": "Front Raise", 
+      "zorluk": 2, 
+      "set": "3x12-15", 
+      "ekipman": "Dumbbell", 
+      "videoKey": "front raise",
+      "aciklama": "Kolları öne doğru omuz seviyesine kaldırın",
+      "kasGruplari": ["Anterior Deltoid", "Medial Deltoid"]
+    },
+    { 
+      "id": 15, 
+      "isim": "Face Pull", 
+      "zorluk": 2, 
+      "set": "3x15-20", 
+      "ekipman": "Cable/Direnç Bandı", 
+      "videoKey": "face pull",
+      "aciklama": "Cable'ı yüz seviyesine doğru çekin, dirsekler yukarıda",
+      "kasGruplari": ["Posterior Deltoid", "Rhomboids", "Middle Trapezius"]
+    },
+    { 
+      "id": 51, 
+      "isim": "Pike Push-up", 
+      "zorluk": 3, 
+      "set": "3x10-15", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "pike push up",
+      "aciklama": "V şeklinde duruş, omuz press hareketi",
+      "kasGruplari": ["Anterior Deltoid", "Triceps Brachii", "Upper Trapezius"]
+    },
+    { 
+      "id": 52, 
+      "isim": "Handstand Push-up", 
+      "zorluk": 5, 
+      "set": "3x3-8", 
+      "ekipman": "Duvar + Vücut Ağırlığı", 
+      "videoKey": "handstand push up",
+      "aciklama": "El üstünde durarak push-up hareketi",
+      "kasGruplari": ["Anterior Deltoid", "Triceps Brachii", "Upper Trapezius", "Core"]
+    },
+    { 
+      "id": 53, 
+      "isim": "Wall Angels", 
+      "zorluk": 1, 
+      "set": "3x15-20", 
+      "ekipman": "Duvar", 
+      "videoKey": "wall angels",
+      "aciklama": "Sırt duvara dayalı, kollarla kar meleği hareketi",
+      "kasGruplari": ["Posterior Deltoid", "Rhomboids", "Lower Trapezius"]
+    },
+    { 
+      "id": 54, 
+      "isim": "Arm Circles", 
+      "zorluk": 1, 
+      "set": "3x20 her yön", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "arm circles",
+      "aciklama": "Kolları yana açarak dairesel hareket yapın",
+      "kasGruplari": ["Deltoids", "Rotator Cuff"]
+    },
+    { 
+      "id": 55, 
+      "isim": "Y-T-W Raises", 
+      "zorluk": 2, 
+      "set": "3x12-15", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "y t w raises",
+      "aciklama": "Yüzüstü yatarak Y-T-W harfleri şeklinde kol hareketleri",
+      "kasGruplari": ["Posterior Deltoid", "Lower Trapezius", "Rhomboids", "Middle Trapezius"]
+    },
+    { 
+      "id": 56, 
+      "isim": "Bottle/Water Jug Press", 
+      "zorluk": 1, 
+      "set": "3x12-18", 
+      "ekipman": "Su Şişesi/Bidon", 
+      "videoKey": "water bottle press",
+      "aciklama": "Su şişeleriyle shoulder press hareketi",
+      "kasGruplari": ["Anterior Deltoid", "Medial Deltoid", "Triceps Brachii"]
+    },
+    { 
+      "id": 57, 
+      "isim": "Chair Dips", 
+      "zorluk": 3, 
+      "set": "3x10-15", 
+      "ekipman": "Sandalye", 
+      "videoKey": "chair dips",
+      "aciklama": "Sandalye kenarında tricep dips hareketi",
+      "kasGruplari": ["Triceps Brachii", "Anterior Deltoid", "Pectoralis Major"]
+    },
+    { 
+      "id": 58, 
+      "isim": "Wall Slide", 
+      "zorluk": 1, 
+      "set": "3x12-20", 
+      "ekipman": "Duvar", 
+      "videoKey": "wall slide",
+      "aciklama": "Sırt duvara dayalı, kolları yukarı aşağı kaydırın",
+      "kasGruplari": ["Posterior Deltoid", "Lower Trapezius", "Rhomboids"]
+    },
+    { 
+      "id": 59, 
+      "isim": "Resistance Band Press", 
+      "zorluk": 2, 
+      "set": "3x12-18", 
+      "ekipman": "Direnç Bandı", 
+      "videoKey": "resistance band press",
+      "aciklama": "Direnç bandıyla shoulder press hareketi",
+      "kasGruplari": ["Anterior Deltoid", "Medial Deltoid", "Triceps Brachii"]
+    },
+    { 
+      "id": 60, 
+      "isim": "Doorway Stretch Hold", 
+      "zorluk": 1, 
+      "set": "3x30-45sn", 
+      "ekipman": "Kapı Çerçevesi", 
+      "videoKey": "doorway stretch",
+      "aciklama": "Kapı çerçevesinde omuz esneklik egzersizi",
+      "kasGruplari": ["Anterior Deltoid", "Pectoralis Major", "Biceps Brachii"]
+    }
+  ],
+  "kol": [
+    { 
+      "id": 16, 
+      "isim": "Barbell Curl", 
+      "zorluk": 3, 
+      "set": "3x10-12", 
+      "ekipman": "Barbell", 
+      "videoKey": "barbell curl",
+      "aciklama": "Barbell'i dirseklerden bükerek omuz seviyesine kaldırın",
+      "kasGruplari": ["Biceps Brachii", "Brachialis", "Forearm Flexors"]
+    },
+    { 
+      "id": 17, 
+      "isim": "Hammer Curl", 
+      "zorluk": 2, 
+      "set": "3x12-15", 
+      "ekipman": "Dumbbell", 
+      "videoKey": "hammer curl",
+      "aciklama": "Nötr grip ile dumbbell curl hareketi",
+      "kasGruplari": ["Brachialis", "Biceps Brachii", "Brachioradialis"]
+    },
+    { 
+      "id": 18, 
+      "isim": "Tricep Dips", 
+      "zorluk": 4, 
+      "set": "3x8-10", 
+      "ekipman": "Paralel Bar/Sandalye", 
+      "videoKey": "tricep dips",
+      "aciklama": "Paralel barlarda vücudu aşağı yukarı hareket ettirin",
+      "kasGruplari": ["Triceps Brachii", "Anterior Deltoid", "Pectoralis Major"]
+    },
+    { 
+      "id": 19, 
+      "isim": "Cable Tricep Extension", 
+      "zorluk": 2, 
+      "set": "3x12-15", 
+      "ekipman": "Cable Makinesi", 
+      "videoKey": "tricep extension",
+      "aciklama": "Cable'ı aşağı doğru iterek tricep çalıştırın",
+      "kasGruplari": ["Triceps Brachii"]
+    },
+    { 
+      "id": 20, 
+      "isim": "Preacher Curl", 
+      "zorluk": 3, 
+      "set": "3x10-12", 
+      "ekipman": "Preacher Bench + Barbell", 
+      "videoKey": "preacher curl",
+      "aciklama": "Preacher bench'te kol destekli bicep curl",
+      "kasGruplari": ["Biceps Brachii", "Brachialis"]
+    },
+    { 
+      "id": 61, 
+      "isim": "Diamond Push-up", 
+      "zorluk": 4, 
+      "set": "3x8-12", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "diamond push up",
+      "aciklama": "Eller elmas şeklinde birleştirilerek tricep odaklı push-up",
+      "kasGruplari": ["Triceps Brachii", "Pectoralis Major", "Anterior Deltoid"]
+    },
+    { 
+      "id": 62, 
+      "isim": "Close Grip Push-up", 
+      "zorluk": 3, 
+      "set": "3x10-15", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "close grip push up",
+      "aciklama": "Eller yakın pozisyonda tricep odaklı push-up",
+      "kasGruplari": ["Triceps Brachii", "Pectoralis Major", "Anterior Deltoid"]
+    },
+    { 
+      "id": 63, 
+      "isim": "Tricep Push-up", 
+      "zorluk": 3, 
+      "set": "3x8-15", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "tricep push up",
+      "aciklama": "Dirsekler vücuda yakın tutularak yapılan push-up",
+      "kasGruplari": ["Triceps Brachii", "Pectoralis Major", "Anterior Deltoid"]
+    },
+    { 
+      "id": 64, 
+      "isim": "Wall Push-up (Tricep)", 
+      "zorluk": 1, 
+      "set": "3x12-20", 
+      "ekipman": "Duvar", 
+      "videoKey": "wall tricep push up",
+      "aciklama": "Duvara karşı tricep odaklı push-up",
+      "kasGruplari": ["Triceps Brachii", "Anterior Deltoid", "Pectoralis Major"]
+    },
+    { 
+      "id": 65, 
+      "isim": "Bottle Curl", 
+      "zorluk": 1, 
+      "set": "3x15-25", 
+      "ekipman": "Su Şişesi/Bidon", 
+      "videoKey": "water bottle curl",
+      "aciklama": "Su şişesiyle bicep curl hareketi",
+      "kasGruplari": ["Biceps Brachii", "Brachialis", "Forearm Flexors"]
+    },
+    { 
+      "id": 66, 
+      "isim": "Isometric Bicep Hold", 
+      "zorluk": 2, 
+      "set": "3x20-40sn", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "isometric bicep",
+      "aciklama": "90° açıda kol büküp statik tutma egzersizi",
+      "kasGruplari": ["Biceps Brachii", "Brachialis", "Anterior Deltoid"]
+    },
+    { 
+      "id": 67, 
+      "isim": "Chair Tricep Dips", 
+      "zorluk": 2, 
+      "set": "3x10-18", 
+      "ekipman": "Sandalye", 
+      "videoKey": "chair tricep dips",
+      "aciklama": "Sandalye kenarında eller arkada tricep dips",
+      "kasGruplari": ["Triceps Brachii", "Anterior Deltoid", "Pectoralis Major"]
+    },
+    { 
+      "id": 68, 
+      "isim": "Floor Tricep Press", 
+      "zorluk": 2, 
+      "set": "3x12-18", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "floor tricep press",
+      "aciklama": "Yerde tricep odaklı push-up hareketi",
+      "kasGruplari": ["Triceps Brachii", "Pectoralis Major", "Anterior Deltoid"]
+    },
+    { 
+      "id": 69, 
+      "isim": "Resistance Band Curl", 
+      "zorluk": 2, 
+      "set": "3x15-25", 
+      "ekipman": "Direnç Bandı", 
+      "videoKey": "resistance band curl",
+      "aciklama": "Direnç bandıyla bicep curl hareketi",
+      "kasGruplari": ["Biceps Brachii", "Brachialis", "Forearm Flexors"]
+    },
+    { 
+      "id": 70, 
+      "isim": "Towel Curl", 
+      "zorluk": 3, 
+      "set": "3x10-15", 
+      "ekipman": "Havlu + Ayak", 
+      "videoKey": "towel curl",
+      "aciklama": "Havluyu ayakla tutup elle çekerek bicep çalıştırma",
+      "kasGruplari": ["Biceps Brachii", "Brachialis", "Forearm Flexors"]
+    }
+  ],
+  "bacak": [
+    { 
+      "id": 21, 
+      "isim": "Squat", 
+      "zorluk": 4, 
+      "set": "4x8-10", 
+      "ekipman": "Barbell + Squat Rack", 
+      "videoKey": "squat",
+      "aciklama": "Barbell omuzlarda, kalçayı arkaya iterek çömelme hareketi",
+      "kasGruplari": ["Quadriceps", "Gluteus Maximus", "Hamstrings", "Gastrocnemius"]
+    },
+    { 
+      "id": 22, 
+      "isim": "Leg Press", 
+      "zorluk": 2, 
+      "set": "3x10-12", 
+      "ekipman": "Leg Press Makinesi", 
+      "videoKey": "leg press",
+      "aciklama": "Makine üzerinde ayaklarla ağırlık itme hareketi",
+      "kasGruplari": ["Quadriceps", "Gluteus Maximus", "Hamstrings"]
+    },
+    { 
+      "id": 23, 
+      "isim": "Leg Extension", 
+      "zorluk": 1, 
+      "set": "3x12-15", 
+      "ekipman": "Leg Extension Makinesi", 
+      "videoKey": "leg extension",
+      "aciklama": "Oturur pozisyonda bacağı düzeltme hareketi",
+      "kasGruplari": ["Quadriceps"]
+    },
+    { 
+      "id": 24, 
+      "isim": "Romanian Deadlift", 
+      "zorluk": 4, 
+      "set": "4x8-10", 
+      "ekipman": "Barbell/Dumbbell", 
+      "videoKey": "romanian deadlift",
+      "aciklama": "Kalça menteşeli hareketle ağırlığı aşağı indirme",
+      "kasGruplari": ["Hamstrings", "Gluteus Maximus", "Erector Spinae"]
+    },
+    { 
+      "id": 25, 
+      "isim": "Leg Curl", 
+      "zorluk": 1, 
+      "set": "3x12-15", 
+      "ekipman": "Leg Curl Makinesi", 
+      "videoKey": "leg curl",
+      "aciklama": "Yüzüstü yatarak bacağı bükme hareketi",
+      "kasGruplari": ["Hamstrings", "Gastrocnemius"]
+    },
+    { 
+      "id": 71, 
+      "isim": "Bodyweight Squat", 
+      "zorluk": 1, 
+      "set": "3x15-25", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "bodyweight squat",
+      "aciklama": "Vücut ağırlığıyla çömelme hareketi",
+      "kasGruplari": ["Quadriceps", "Gluteus Maximus", "Hamstrings", "Gastrocnemius"]
+    },
+    { 
+      "id": 72, 
+      "isim": "Jump Squat", 
+      "zorluk": 3, 
+      "set": "3x12-20", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "jump squat",
+      "aciklama": "Çömelme pozisyonundan patlayıcı sıçrama",
+      "kasGruplari": ["Quadriceps", "Gluteus Maximus", "Hamstrings", "Gastrocnemius"]
+    },
+    { 
+      "id": 73, 
+      "isim": "Lunges", 
+      "zorluk": 2, 
+      "set": "3x12-18", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "lunges",
+      "aciklama": "Öne adım atarak diz bükme hareketi",
+      "kasGruplari": ["Quadriceps", "Gluteus Maximus", "Hamstrings", "Gastrocnemius"]
+    },
+    { 
+      "id": 74, 
+      "isim": "Bulgarian Split Squat", 
+      "zorluk": 4, 
+      "set": "3x10-15", 
+      "ekipman": "Sandalye/Yüksek Yüzey", 
+      "videoKey": "bulgarian split squat",
+      "aciklama": "Arka ayak yüksekte, tek bacak squat hareketi",
+      "kasGruplari": ["Quadriceps", "Gluteus Maximus", "Hamstrings"]
+    },
+    { 
+      "id": 75, 
+      "isim": "Single Leg Squat", 
+      "zorluk": 5, 
+      "set": "3x5-10", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "single leg squat",
+      "aciklama": "Tek ayakla pistol squat hareketi",
+      "kasGruplari": ["Quadriceps", "Gluteus Maximus", "Hamstrings", "Core"]
+    },
+    { 
+      "id": 76, 
+      "isim": "Wall Sit", 
+      "zorluk": 2, 
+      "set": "3x30-60sn", 
+      "ekipman": "Duvar", 
+      "videoKey": "wall sit",
+      "aciklama": "Sırt duvara dayalı, squat pozisyonunda durma",
+      "kasGruplari": ["Quadriceps", "Gluteus Maximus", "Hamstrings"]
+    },
+    { 
+      "id": 77, 
+      "isim": "Calf Raises", 
+      "zorluk": 1, 
+      "set": "3x20-30", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "calf raises",
+      "aciklama": "Ayak parmaklarına basarak baldırı kasma",
+      "kasGruplari": ["Gastrocnemius", "Soleus"]
+    },
+    { 
+      "id": 78, 
+      "isim": "Step-ups", 
+      "zorluk": 2, 
+      "set": "3x15-20", 
+      "ekipman": "Merdiven/Kutu", 
+      "videoKey": "step ups",
+      "aciklama": "Yüksek yüzeye çıkma hareketi",
+      "kasGruplari": ["Quadriceps", "Gluteus Maximus", "Hamstrings", "Gastrocnemius"]
+    },
+    { 
+      "id": 79, 
+      "isim": "Glute Bridge", 
+      "zorluk": 1, 
+      "set": "3x15-25", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "glute bridge",
+      "aciklama": "Sırt üstü yatarak kalçayı kaldırma",
+      "kasGruplari": ["Gluteus Maximus", "Hamstrings", "Core"]
+    },
+    { 
+      "id": 80, 
+      "isim": "Single Leg Glute Bridge", 
+      "zorluk": 3, 
+      "set": "3x10-15", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "single leg glute bridge",
+      "aciklama": "Tek ayakla glute bridge hareketi",
+      "kasGruplari": ["Gluteus Maximus", "Hamstrings", "Core"]
+    },
+    { 
+      "id": 81, 
+      "isim": "Curtsy Lunge", 
+      "zorluk": 2, 
+      "set": "3x12-18", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "curtsy lunge",
+      "aciklama": "Çapraz geriye adım atarak lunge hareketi",
+      "kasGruplari": ["Quadriceps", "Gluteus Maximus", "Gluteus Medius", "Hamstrings"]
+    },
+    { 
+      "id": 82, 
+      "isim": "Side Lunges", 
+      "zorluk": 2, 
+      "set": "3x12-18", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "side lunges",
+      "aciklama": "Yana doğru adım atarak lunge hareketi",
+      "kasGruplari": ["Quadriceps", "Gluteus Maximus", "Gluteus Medius", "Adductors"]
+    },
+    { 
+      "id": 83, 
+      "isim": "Sumo Squat", 
+      "zorluk": 2, 
+      "set": "3x15-20", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "sumo squat",
+      "aciklama": "Geniş duruşla yapılan squat hareketi",
+      "kasGruplari": ["Quadriceps", "Gluteus Maximus", "Adductors", "Hamstrings"]
+    },
+    { 
+      "id": 84, 
+      "isim": "Duck Walk", 
+      "zorluk": 3, 
+      "set": "3x10-15 adım", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "duck walk",
+      "aciklama": "Çömelme pozisyonunda yürüme hareketi",
+      "kasGruplari": ["Quadriceps", "Gluteus Maximus", "Hamstrings", "Core"]
+    }
+  ],
+  "core": [
+    { 
+      "id": 26, 
+      "isim": "Plank", 
+      "zorluk": 2, 
+      "set": "3x60sn", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "plank",
+      "aciklama": "Dirsek ve ayak parmaklarında vücut düz tutma",
+      "kasGruplari": ["Rectus Abdominis", "Transverse Abdominis", "Obliques", "Erector Spinae"]
+    },
+    { 
+      "id": 27, 
+      "isim": "Crunch", 
+      "zorluk": 1, 
+      "set": "3x20-25", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "crunch",
+      "aciklama": "Sırt üstü yatarak üst vücudu kaldırma",
+      "kasGruplari": ["Rectus Abdominis", "Obliques"]
+    },
+    { 
+      "id": 28, 
+      "isim": "Russian Twist", 
+      "zorluk": 2, 
+      "set": "3x15-20", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "russian twist",
+      "aciklama": "Oturur pozisyonda gövdeyi sağa sola döndürme",
+      "kasGruplari": ["Obliques", "Rectus Abdominis", "Transverse Abdominis"]
+    },
+    { 
+      "id": 29, 
+      "isim": "Leg Raise", 
+      "zorluk": 3, 
+      "set": "3x10-15", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "leg raise",
+      "aciklama": "Sırt üstü yatarak bacakları kaldırma",
+      "kasGruplari": ["Rectus Abdominis", "Hip Flexors", "Transverse Abdominis"]
+    },
+    { 
+      "id": 30, 
+      "isim": "Cable Crunch", 
+      "zorluk": 2, 
+      "set": "3x15-20", 
+      "ekipman": "Cable Makinesi", 
+      "videoKey": "cable crunch",
+      "aciklama": "Cable ile direnç sağlayarak crunch hareketi",
+      "kasGruplari": ["Rectus Abdominis", "Obliques"]
+    },
+    { 
+      "id": 85, 
+      "isim": "Mountain Climbers", 
+      "zorluk": 3, 
+      "set": "3x20-30", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "mountain climbers",
+      "aciklama": "Plank pozisyonunda dizleri göğse çekme hareketi",
+      "kasGruplari": ["Rectus Abdominis", "Obliques", "Hip Flexors", "Anterior Deltoid"]
+    },
+    { 
+      "id": 86, 
+      "isim": "Bicycle Crunches", 
+      "zorluk": 2, 
+      "set": "3x20-30", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "bicycle crunches",
+      "aciklama": "Sırt üstü yatarak bisiklet pedal çevirme hareketi",
+      "kasGruplari": ["Rectus Abdominis", "Obliques", "Hip Flexors"]
+    },
+    { 
+      "id": 87, 
+      "isim": "Dead Bug", 
+      "zorluk": 1, 
+      "set": "3x12-16", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "dead bug",
+      "aciklama": "Sırt üstü yatarak zıt kol ve bacağı hareket ettirme",
+      "kasGruplari": ["Transverse Abdominis", "Multifidus", "Hip Flexors"]
+    },
+    { 
+      "id": 88, 
+      "isim": "Bird Dog", 
+      "zorluk": 1, 
+      "set": "3x12-16", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "bird dog",
+      "aciklama": "Dört ayak üzerinde zıt kol ve bacağı uzatma",
+      "kasGruplari": ["Transverse Abdominis", "Multifidus", "Gluteus Maximus", "Erector Spinae"]
+    },
+    { 
+      "id": 89, 
+      "isim": "Side Plank", 
+      "zorluk": 3, 
+      "set": "3x30-45sn", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "side plank",
+      "aciklama": "Yan yatarak vücudu düz tutma hareketi",
+      "kasGruplari": ["Obliques", "Quadratus Lumborum", "Gluteus Medius", "Transverse Abdominis"]
+    },
+    { 
+      "id": 90, 
+      "isim": "Hollow Body Hold", 
+      "zorluk": 4, 
+      "set": "3x20-40sn", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "hollow body hold",
+      "aciklama": "Sırt üstü yatarak vücudu çukur şeklinde tutma",
+      "kasGruplari": ["Rectus Abdominis", "Hip Flexors", "Transverse Abdominis"]
+    },
+    { 
+      "id": 91, 
+      "isim": "V-ups", 
+      "zorluk": 4, 
+      "set": "3x10-15", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "v ups",
+      "aciklama": "Kol ve bacakları aynı anda V şeklinde birleştirme",
+      "kasGruplari": ["Rectus Abdominis", "Hip Flexors", "Obliques"]
+    },
+    { 
+      "id": 92, 
+      "isim": "Reverse Crunch", 
+      "zorluk": 2, 
+      "set": "3x15-20", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "reverse crunch",
+      "aciklama": "Dizleri göğse çekerek alt karın çalıştırma",
+      "kasGruplari": ["Rectus Abdominis", "Hip Flexors", "Transverse Abdominis"]
+    },
+    { 
+      "id": 93, 
+      "isim": "Flutter Kicks", 
+      "zorluk": 2, 
+      "set": "3x20-30", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "flutter kicks",
+      "aciklama": "Sırt üstü yatarak bacakları alternatif çırpma",
+      "kasGruplari": ["Rectus Abdominis", "Hip Flexors", "Transverse Abdominis"]
+    },
+    { 
+      "id": 94, 
+      "isim": "High Knees", 
+      "zorluk": 1, 
+      "set": "3x30sn", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "high knees",
+      "aciklama": "Yerinde koşar gibi dizleri yüksek kaldırma",
+      "kasGruplari": ["Hip Flexors", "Rectus Abdominis", "Quadriceps"]
+    },
+    { 
+      "id": 95, 
+      "isim": "Burpees", 
+      "zorluk": 4, 
+      "set": "3x8-15", 
+      "ekipman": "Vücut Ağırlığı", 
+      "videoKey": "burpees",
+      "aciklama": "Çömelerek plank, push-up ve sıçrama kombinasyonu",
+      "kasGruplari": ["Rectus Abdominis", "Pectoralis Major", "Quadriceps", "Gluteus Maximus", "Anterior Deltoid"]
+    }
+  ]
+}
