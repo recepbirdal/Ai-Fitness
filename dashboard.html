@@ -83,6 +83,27 @@
         </div>
     </div>
 
+    <!-- Video Modal -->
+    <div id="videoModal" class="video-modal">
+        <div class="video-modal-content">
+            <div class="video-modal-header">
+                <h3 id="videoTitle">Egzersiz Videosu</h3>
+                <button class="video-close-btn" onclick="closeVideoModal()">&times;</button>
+            </div>
+
+            <div class="video-modal-body">
+                <div id="videoLoading" class="video-loading">
+                    <div class="loading-spinner"></div>
+                    <p>Video yükleniyor...</p>
+                </div>
+
+                <div id="videoContent" class="video-content">
+                    <!-- Video içeriği buraya gelecek -->
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- AI Chat Modal -->
     <div id="aiChatModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="chatModalTitle">
         <div class="modal-content chat-modal">
@@ -194,7 +215,9 @@
     document.addEventListener('keydown', (e) => {
         // Escape key handling
         if (e.key === 'Escape') {
-            if (document.getElementById('aiChatModal')?.classList.contains('show')) {
+            if (document.getElementById('videoModal')?.classList.contains('show')) {
+                closeVideoModal();
+            } else if (document.getElementById('aiChatModal')?.classList.contains('show')) {
                 closeChatModal();
             } else if (document.getElementById('bottomSheet')?.classList.contains('show')) {
                 closeBottomSheet();
@@ -255,100 +278,10 @@
     // Optimize for mobile performance
     if ('requestIdleCallback' in window) {
         requestIdleCallback(() => {
-            // Non-critical initializations
             console.log('🚀 Fitness Takvimi hazır!');
         });
     }
 </script>
-
-<!-- Inline critical CSS for faster loading -->
-<style>
-    /* Critical above-the-fold styles */
-    .app-container {
-        opacity: 0;
-        animation: fadeIn 0.3s ease forwards;
-    }
-
-    @keyframes fadeIn {
-        to { opacity: 1; }
-    }
-
-    /* Loading state */
-    .loading-state {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        font-size: 2rem;
-    }
-
-    /* Skeleton loading for better UX */
-    .skeleton {
-        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-        background-size: 200% 100%;
-        animation: loading 1.5s infinite;
-    }
-
-    @keyframes loading {
-        0% { background-position: 200% 0; }
-        100% { background-position: -200% 0; }
-    }
-
-    /* Accessibility improvements */
-    .sr-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-    }
-
-    /* High contrast mode support - Modern CSS */
-    @media (prefers-contrast: more) {
-        :root {
-            --primary: #000080;
-            --success: #006400;
-            --text-dark: #000000;
-            --border-light: #000000;
-        }
-    }
-
-    /* Windows High Contrast Mode support */
-    @media (forced-colors: active) {
-        :root {
-            --primary: ButtonText;
-            --success: ButtonText;
-            --text-dark: ButtonText;
-            --border-light: ButtonBorder;
-        }
-
-        .day-card, .exercise-item, .suggestion-item {
-            border: 1px solid ButtonBorder;
-        }
-    }
-
-    /* Focus indicators for better accessibility */
-    *:focus {
-        outline: 2px solid var(--primary, #667eea);
-        outline-offset: 2px;
-    }
-
-    /* Reduce motion for accessibility */
-    @media (prefers-reduced-motion: reduce) {
-        *,
-        *::before,
-        *::after {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-            scroll-behavior: auto !important;
-        }
-    }
-</style>
 
 </body>
 </html>
