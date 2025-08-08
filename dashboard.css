@@ -1,18 +1,72 @@
-/* Mobil-First CSS - Sadece Mobil Uyumlu */
+/* ========== BİRLEŞİK TASARIM SİSTEMİ ========== */
 :root {
+    /* Viewport */
     --vh: 1vh;
+
+    /* Marka Renkleri - Tutarlı palet */
     --primary: #667eea;
     --primary-dark: #764ba2;
+    --primary-light: #8b9df5;
+    --secondary: #5a6fd8;
+    --secondary-dark: #6b5b95;
+
+    /* Durum Renkleri */
     --success: #28a745;
     --success-light: #20c997;
+    --warning: #ff9500;
+    --warning-dark: #e6850e;
+    --error: #ff0000;
+    --error-dark: #cc0000;
+
+    /* Nötr Renkler */
+    --white: #ffffff;
     --bg-light: #f8f9fa;
-    --text-dark: #333;
-    --text-light: #666;
+    --bg-lighter: #f0f2f5;
+    --text-dark: #333333;
+    --text-medium: #666666;
+    --text-light: #999999;
     --border-light: #e0e0e0;
-    --shadow-light: rgba(0,0,0,0.05);
-    --shadow-medium: rgba(0,0,0,0.1);
+    --border-medium: #cccccc;
+
+    /* Gölgeler - Tutarlı derinlik */
+    --shadow-xs: 0 1px 3px rgba(0,0,0,0.05);
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 15px rgba(0,0,0,0.12);
+    --shadow-lg: 0 8px 25px rgba(0,0,0,0.15);
+    --shadow-xl: 0 20px 60px rgba(0,0,0,0.25);
+
+    /* Boşluk Sistemi */
+    --space-xs: 0.25rem;  /* 4px */
+    --space-sm: 0.5rem;   /* 8px */
+    --space-md: 0.75rem;  /* 12px */
+    --space-lg: 1rem;     /* 16px */
+    --space-xl: 1.5rem;   /* 24px */
+    --space-2xl: 2rem;    /* 32px */
+    --space-3xl: 3rem;    /* 48px */
+
+    /* Kenar Yuvarlaklığı Sistemi */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+    --radius-2xl: 24px;
+    --radius-round: 50%;
+
+    /* Tipografi */
+    --font-xs: 0.75rem;   /* 12px */
+    --font-sm: 0.85rem;   /* 14px */
+    --font-base: 0.95rem; /* 15px */
+    --font-lg: 1.1rem;    /* 18px */
+    --font-xl: 1.2rem;    /* 20px */
+    --font-2xl: 1.5rem;   /* 24px */
+
+    /* Etkileşim Durumları */
+    --transition-fast: 0.15s ease;
+    --transition-base: 0.2s ease;
+    --transition-slow: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* ========== RESET & TEMEL ========== */
 * {
     margin: 0;
     padding: 0;
@@ -28,6 +82,8 @@ body {
     color: var(--text-dark);
     overscroll-behavior: none;
     -webkit-font-smoothing: antialiased;
+    font-size: var(--font-base);
+    line-height: 1.5;
 }
 
 .app-container {
@@ -35,59 +91,67 @@ body {
     min-height: calc(var(--vh, 1vh) * 100);
     background: var(--bg-light);
     position: relative;
+    opacity: 0;
+    animation: fadeIn 0.3s ease forwards;
 }
 
-/* Header - Mobil Optimize */
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+/* ========== HEADER - MOBİL OPTİMİZE ========== */
 .header {
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-    color: white;
-    padding: calc(env(safe-area-inset-top, 0px) + 1.5rem) 1rem 2rem;
+    color: var(--white);
+    padding: calc(env(safe-area-inset-top, 0px) + var(--space-xl)) var(--space-lg) var(--space-2xl);
     text-align: center;
-    box-shadow: 0 4px 20px var(--shadow-medium);
-    border-radius: 0 0 25px 25px;
+    box-shadow: var(--shadow-md);
+    border-radius: 0 0 var(--radius-2xl) var(--radius-2xl);
+    position: relative;
 }
 
 .header-title {
-    font-size: 1.5rem;
+    font-size: var(--font-2xl);
     font-weight: 700;
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--space-sm);
 }
 
 .header-subtitle {
     opacity: 0.9;
-    font-size: 0.9rem;
+    font-size: var(--font-base);
 }
 
 .logout-btn {
     position: absolute;
-    top: calc(env(safe-area-inset-top, 0px) + 1rem);
-    right: 1rem;
+    top: calc(env(safe-area-inset-top, 0px) + var(--space-lg));
+    right: var(--space-lg);
     background: rgba(255,255,255,0.2);
     border: none;
-    color: white;
-    padding: 0.5rem;
-    border-radius: 50%;
+    color: var(--white);
+    padding: var(--space-md);
+    border-radius: var(--radius-round);
     cursor: pointer;
-    font-size: 1.2rem;
-    width: 40px;
-    height: 40px;
+    font-size: var(--font-xl);
+    width: 44px;
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s ease;
+    transition: var(--transition-base);
 }
 
 .logout-btn:active {
     transform: scale(0.9);
+    background: rgba(255,255,255,0.3);
 }
 
-/* Profile Card - Mobil */
+/* ========== PROFILE CARD - MOBİL ========== */
 .profile-card {
-    background: white;
-    margin: -1rem 1rem 1rem;
-    padding: 1.5rem;
-    border-radius: 20px;
-    box-shadow: 0 8px 25px var(--shadow-medium);
+    background: var(--white);
+    margin: calc(-1 * var(--space-lg)) var(--space-lg) var(--space-lg);
+    padding: var(--space-xl);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
     text-align: center;
     position: relative;
     z-index: 10;
@@ -97,65 +161,66 @@ body {
     width: 80px;
     height: 80px;
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    border-radius: 50%;
+    border-radius: var(--radius-round);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
-    color: white;
-    margin: 0 auto 1rem;
+    font-size: var(--space-2xl);
+    color: var(--white);
+    margin: 0 auto var(--space-lg);
     box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
 }
 
 .profile-name {
-    font-size: 1.2rem;
+    font-size: var(--font-xl);
     font-weight: 600;
-    margin-bottom: 1rem;
+    margin-bottom: var(--space-lg);
 }
 
 .profile-stats {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
 }
 
 .stat-item {
     background: var(--bg-light);
-    padding: 0.75rem;
-    border-radius: 12px;
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
     text-align: center;
 }
 
 .stat-value {
     font-weight: 600;
     color: var(--primary);
-    font-size: 0.9rem;
+    font-size: var(--font-base);
 }
 
 .stat-label {
-    font-size: 0.8rem;
+    font-size: var(--font-sm);
     color: var(--text-light);
-    margin-top: 0.25rem;
+    margin-top: var(--space-xs);
 }
 
-/* Generate Button - Mobil */
+/* ========== GENERATE BUTTON - MOBİL ========== */
 .generate-btn {
     background: linear-gradient(135deg, var(--success), var(--success-light));
-    color: white;
+    color: var(--white);
     border: none;
-    padding: 1rem 2rem;
-    border-radius: 15px;
-    font-size: 1rem;
+    padding: var(--space-lg) var(--space-2xl);
+    border-radius: var(--radius-lg);
+    font-size: var(--font-lg);
     font-weight: 600;
     cursor: pointer;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    gap: var(--space-sm);
     box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
-    transition: all 0.2s ease;
+    transition: var(--transition-base);
+    min-height: 56px;
 }
 
 .generate-btn:active {
@@ -165,54 +230,57 @@ body {
 .generate-btn:disabled {
     opacity: 0.7;
     transform: none;
+    cursor: not-allowed;
 }
 
-/* Week Section - Mobil Grid */
+/* ========== WEEK SECTION - MOBİL GRID ========== */
 .week-section {
-    padding: 1rem;
+    padding: var(--space-lg);
 }
 
 .week-header {
     text-align: center;
-    margin-bottom: 1rem;
+    margin-bottom: var(--space-lg);
 }
 
 .week-title {
-    font-size: 1.1rem;
+    font-size: var(--font-lg);
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--space-sm);
 }
 
 .week-date {
     color: var(--text-light);
-    font-size: 0.9rem;
+    font-size: var(--font-base);
 }
 
 .week-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.75rem;
-    margin-bottom: 1rem;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
 }
 
 .week-grid .day-card:nth-child(7) {
     grid-column: 1 / -1;
 }
 
+/* ========== DAY CARD - TUTARLI TASARIM ========== */
 .day-card {
-    background: white;
-    border-radius: 15px;
-    padding: 1.2rem 1rem;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl) var(--space-lg);
     text-align: center;
     cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0 2px 10px var(--shadow-light);
+    transition: var(--transition-base);
+    box-shadow: var(--shadow-sm);
     position: relative;
     overflow: hidden;
-    min-height: 100px;
+    min-height: 120px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    border: 2px solid transparent;
 }
 
 .day-card:active {
@@ -221,71 +289,73 @@ body {
 
 .day-card.active {
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    color: white;
+    color: var(--white);
     transform: scale(1.02);
-    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary);
 }
 
 .day-card.rest-day {
-    background: var(--bg-light);
-    color: #999;
+    background: var(--bg-lighter);
+    color: var(--text-light);
     cursor: not-allowed;
 }
 
 .day-card.today::before {
     content: '';
     position: absolute;
-    top: 8px;
-    right: 8px;
-    width: 8px;
-    height: 8px;
+    top: var(--space-sm);
+    right: var(--space-sm);
+    width: var(--space-sm);
+    height: var(--space-sm);
     background: var(--success);
-    border-radius: 50%;
+    border-radius: var(--radius-round);
 }
 
 .day-name {
     font-weight: 600;
-    font-size: 0.9rem;
-    margin-bottom: 0.75rem;
+    font-size: var(--font-base);
+    margin-bottom: var(--space-md);
     text-transform: capitalize;
 }
 
 .workout-type {
     background: rgba(102, 126, 234, 0.1);
     color: var(--primary);
-    padding: 0.4rem 0.75rem;
-    border-radius: 8px;
-    font-size: 0.75rem;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-sm);
     font-weight: 500;
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--space-sm);
     display: inline-block;
 }
 
 .day-card.active .workout-type {
     background: rgba(255,255,255,0.2);
-    color: white;
+    color: var(--white);
 }
 
 .exercise-count {
-    font-size: 0.75rem;
+    font-size: var(--font-sm);
     opacity: 0.8;
-    margin-top: 0.25rem;
+    margin-top: var(--space-xs);
 }
 
-/* Bottom Sheet - Mobil Optimize */
+/* ========== BOTTOM SHEET - MOBİL OPTİMİZE ========== */
 .bottom-sheet {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    background: white;
-    border-radius: 20px 20px 0 0;
+    background: var(--white);
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
     transform: translateY(100%);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: var(--transition-slow);
     z-index: 1000;
     max-height: calc(var(--vh, 1vh) * 85);
     overflow: hidden;
-    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 10px);
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + var(--space-sm));
+    box-shadow: var(--shadow-xl);
 }
 
 .bottom-sheet.show {
@@ -295,148 +365,136 @@ body {
 .bottom-sheet-handle {
     width: 40px;
     height: 4px;
-    background: #ddd;
+    background: var(--border-light);
     border-radius: 2px;
-    margin: 1rem auto 0;
+    margin: var(--space-lg) auto 0;
 }
 
 .bottom-sheet-content {
-    padding: 1.5rem;
+    padding: var(--space-xl);
     overflow-y: auto;
     max-height: calc(var(--vh, 1vh) * 75);
     -webkit-overflow-scrolling: touch;
 }
 
 .bottom-sheet-title {
-    font-size: 1.2rem;
+    font-size: var(--font-xl);
     font-weight: 600;
-    margin-bottom: 1rem;
+    margin-bottom: var(--space-lg);
     text-align: center;
 }
 
-/* Workout Header */
+/* ========== WORKOUT HEADER ========== */
 .workout-header {
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    color: white;
-    padding: 1rem;
-    border-radius: 15px;
-    margin-bottom: 1rem;
+    color: var(--white);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-lg);
     text-align: center;
 }
 
 .workout-header h4 {
     margin: 0;
-    font-size: 1.1rem;
+    font-size: var(--font-lg);
 }
 
 .workout-header p {
-    margin: 0.5rem 0 0;
+    margin: var(--space-sm) 0 0;
     opacity: 0.9;
-    font-size: 0.9rem;
+    font-size: var(--font-base);
 }
 
-/* Warmup Section */
+/* ========== WARMUP SECTION ========== */
 .warmup-section {
     background: var(--bg-light);
-    border-radius: 15px;
-    padding: 1rem;
-    margin-bottom: 1rem;
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-lg);
 }
 
 .warmup-title {
     color: var(--primary);
-    font-size: 0.95rem;
+    font-size: var(--font-base);
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--space-sm);
 }
 
 .warmup-list {
-    padding-left: 1.2rem;
+    padding-left: var(--space-xl);
     margin: 0;
-    font-size: 0.85rem;
+    font-size: var(--font-sm);
 }
 
 .warmup-list li {
-    margin-bottom: 0.25rem;
+    margin-bottom: var(--space-xs);
     line-height: 1.4;
 }
 
-/* Exercise List - Mobil */
+/* ========== EXERCISE LIST - MOBİL ========== */
 .exercise-list {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: var(--space-md);
 }
 
 .exercise-item {
     background: var(--bg-light);
-    border-radius: 16px;
-    padding: 1rem;
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 8px var(--shadow-light);
-    transition: all 0.2s ease;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-base);
+    border: 2px solid transparent;
 }
 
 .exercise-item:active {
     transform: scale(0.98);
+    border-color: var(--primary);
 }
 
 .exercise-info {
     flex: 1;
-    margin-right: 1rem;
+    margin-right: var(--space-lg);
 }
 
 .exercise-name {
     font-weight: 600;
-    font-size: 0.95rem;
-    margin-bottom: 0.25rem;
+    font-size: var(--font-base);
+    margin-bottom: var(--space-xs);
     line-height: 1.3;
 }
 
 .exercise-sets {
-    color: var(--text-light);
-    font-size: 0.85rem;
+    color: var(--text-medium);
+    font-size: var(--font-sm);
 }
 
-
-
-.video-btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
-}
-
-.video-btn:active {
-    transform: scale(0.95);
-}
-
-.video-icon {
-    font-size: 0.9rem;
-}
-
-/* Exercise Actions - Video ve AI Chat butonları aynı ebat ve renk tonu */
+/* ========== EXERCISE ACTIONS - TUTARLI BUTONLAR ========== */
 .exercise-actions {
     display: flex;
-    gap: 8px;
-    align-items: center;
     flex-direction: column;
+    gap: var(--space-sm);
+    align-items: center;
+    min-width: 100px;
 }
 
-/* Video butonu - Ana renk tonu */
+/* Video Butonu */
 .video-btn {
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    color: white;
+    color: var(--white);
     border: none;
-    padding: 10px 14px;
-    border-radius: 20px;
-    font-size: 0.85rem;
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--radius-xl);
+    font-size: var(--font-sm);
     font-weight: 500;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 6px;
-    transition: all 0.2s;
+    gap: var(--space-xs);
+    transition: var(--transition-base);
     box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
     width: 100%;
     justify-content: center;
@@ -453,22 +511,22 @@ body {
 }
 
 .video-icon {
-    font-size: 0.9rem;
+    font-size: var(--font-base);
 }
 
-/* AI Chat butonu - Aynı renk ailesi, farklı ton */
+/* AI Chat Butonu */
 .difficulty-btn {
-    background: linear-gradient(135deg, #5a6fd8, #6b5b95);
-    color: white;
+    background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+    color: var(--white);
     border: none;
-    padding: 10px 14px;
-    border-radius: 20px;
-    font-size: 0.85rem;
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--radius-xl);
+    font-size: var(--font-sm);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: var(--transition-base);
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: var(--space-xs);
     flex-shrink: 0;
     font-weight: 500;
     width: 100%;
@@ -487,50 +545,10 @@ body {
 }
 
 .difficulty-btn .chat-icon {
-    font-size: 0.9rem;
+    font-size: var(--font-base);
 }
 
-/* Mobil için responsive ayarlar */
-@media (max-width: 768px) {
-    .exercise-actions {
-        flex-direction: column;
-        gap: 6px;
-    }
-
-    .video-btn, .difficulty-btn {
-        width: 100%;
-        justify-content: center;
-        min-height: 42px;
-        padding: 9px 12px;
-        font-size: 0.8rem;
-    }
-
-    .video-icon, .difficulty-btn .chat-icon {
-        font-size: 0.85rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .video-btn, .difficulty-btn {
-        min-height: 40px;
-        padding: 8px 10px;
-        font-size: 0.75rem;
-        gap: 5px;
-    }
-
-    .video-icon, .difficulty-btn .chat-icon {
-        font-size: 0.8rem;
-    }
-}
-.difficulty-btn:active {
-    transform: scale(0.95);
-}
-
-.difficulty-btn .chat-icon {
-    font-size: 1rem;
-}
-
-/* Video Modal Styles */
+/* ========== VIDEO MODAL ========== */
 .video-modal {
     display: none;
     position: fixed;
@@ -542,7 +560,7 @@ body {
     background-color: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(5px);
     opacity: 0;
-    transition: all 0.3s ease;
+    transition: var(--transition-slow);
 }
 
 .video-modal.show {
@@ -553,15 +571,15 @@ body {
 }
 
 .video-modal-content {
-    background: white;
-    border-radius: 16px;
+    background: var(--white);
+    border-radius: var(--radius-lg);
     width: 90%;
     max-width: 600px;
     max-height: 80vh;
     overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--shadow-xl);
     transform: scale(0.9) translateY(20px);
-    transition: transform 0.3s ease;
+    transition: var(--transition-slow);
 }
 
 .video-modal.show .video-modal-content {
@@ -569,9 +587,9 @@ body {
 }
 
 .video-modal-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 20px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: var(--white);
+    padding: var(--space-xl);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -579,15 +597,15 @@ body {
 
 .video-modal-header h3 {
     margin: 0;
-    font-size: 1.2rem;
+    font-size: var(--font-xl);
     font-weight: 600;
 }
 
 .video-close-btn {
     background: none;
     border: none;
-    color: white;
-    font-size: 2rem;
+    color: var(--white);
+    font-size: var(--space-2xl);
     cursor: pointer;
     padding: 0;
     width: 30px;
@@ -595,8 +613,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    transition: background-color 0.2s;
+    border-radius: var(--radius-round);
+    transition: var(--transition-base);
 }
 
 .video-close-btn:hover {
@@ -613,7 +631,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 60px 20px;
+    padding: var(--space-3xl) var(--space-xl);
     text-align: center;
 }
 
@@ -621,10 +639,10 @@ body {
     width: 40px;
     height: 40px;
     border: 4px solid #f3f3f3;
-    border-top: 4px solid #667eea;
-    border-radius: 50%;
+    border-top: 4px solid var(--primary);
+    border-radius: var(--radius-round);
     animation: spin 1s linear infinite;
-    margin-bottom: 20px;
+    margin-bottom: var(--space-xl);
 }
 
 @keyframes spin {
@@ -648,65 +666,65 @@ body {
 }
 
 .video-info {
-    padding: 20px;
+    padding: var(--space-xl);
 }
 
 .video-info h4 {
-    margin: 0 0 10px 0;
-    font-size: 1.1rem;
-    color: #333;
+    margin: 0 0 var(--space-sm) 0;
+    font-size: var(--font-lg);
+    color: var(--text-dark);
     line-height: 1.4;
 }
 
 .video-info .channel {
-    color: #666;
-    font-size: 0.9rem;
-    margin: 0 0 15px 0;
+    color: var(--text-medium);
+    font-size: var(--font-base);
+    margin: 0 0 var(--space-lg) 0;
 }
 
 .video-actions {
     display: flex;
-    gap: 10px;
+    gap: var(--space-sm);
     flex-wrap: wrap;
 }
 
 .watch-youtube-btn, .search-youtube-btn, .find-more-btn, .ai-help-btn, .retry-btn {
-    padding: 10px 16px;
+    padding: var(--space-sm) var(--space-lg);
     border: none;
-    border-radius: 8px;
-    font-size: 0.9rem;
+    border-radius: var(--radius-sm);
+    font-size: var(--font-base);
     font-weight: 500;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: var(--space-sm);
     cursor: pointer;
-    transition: all 0.2s;
+    transition: var(--transition-base);
 }
 
 .watch-youtube-btn, .search-youtube-btn {
-    background: #ff0000;
-    color: white;
+    background: var(--error);
+    color: var(--white);
 }
 
 .watch-youtube-btn:hover, .search-youtube-btn:hover {
-    background: #cc0000;
+    background: var(--error-dark);
     transform: translateY(-1px);
 }
 
 .find-more-btn {
-    background: #f0f0f0;
-    color: #333;
-    border: 1px solid #ddd;
+    background: var(--bg-light);
+    color: var(--text-dark);
+    border: 1px solid var(--border-light);
 }
 
 .find-more-btn:hover {
-    background: #e0e0e0;
+    background: var(--bg-lighter);
 }
 
 .ai-help-btn {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: var(--white);
 }
 
 .ai-help-btn:hover {
@@ -715,39 +733,39 @@ body {
 }
 
 .retry-btn {
-    background: #ff9500;
-    color: white;
+    background: var(--warning);
+    color: var(--white);
 }
 
 .retry-btn:hover {
-    background: #e6850e;
+    background: var(--warning-dark);
 }
 
-/* No Video Found Styles */
+/* ========== NO VIDEO FOUND ========== */
 .no-video-found, .video-error {
     text-align: center;
-    padding: 40px 20px;
+    padding: var(--space-2xl) var(--space-xl);
 }
 
 .no-video-icon, .error-icon {
-    font-size: 3rem;
-    margin-bottom: 20px;
+    font-size: var(--space-3xl);
+    margin-bottom: var(--space-xl);
     opacity: 0.7;
 }
 
 .no-video-found h4, .video-error h4 {
-    color: #333;
-    margin: 0 0 10px 0;
-    font-size: 1.2rem;
+    color: var(--text-dark);
+    margin: 0 0 var(--space-sm) 0;
+    font-size: var(--font-xl);
 }
 
 .no-video-found p, .video-error p {
-    color: #666;
-    margin: 0 0 25px 0;
+    color: var(--text-medium);
+    margin: 0 0 var(--space-2xl) 0;
     line-height: 1.5;
 }
 
-/* Backdrop */
+/* ========== BACKDROP ========== */
 .backdrop {
     position: fixed;
     top: 0;
@@ -764,7 +782,7 @@ body {
     display: block;
 }
 
-/* Modal - Mobil Optimize */
+/* ========== MODAL - MOBİL OPTİMİZE ========== */
 .modal {
     position: fixed;
     top: 0;
@@ -783,12 +801,12 @@ body {
 }
 
 .modal-content {
-    background: white;
-    border-radius: 20px 20px 0 0;
+    background: var(--white);
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
     width: 100%;
     max-height: calc(var(--vh, 1vh) * 90);
     overflow: hidden;
-    animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: slideUp var(--transition-slow);
 }
 
 @keyframes slideUp {
@@ -800,14 +818,14 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 1.5rem;
-    border-bottom: 1px solid #eee;
+    padding: var(--space-lg) var(--space-xl);
+    border-bottom: 1px solid var(--border-light);
     background: var(--bg-light);
-    border-radius: 20px 20px 0 0;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
 }
 
 .modal-title {
-    font-size: 1.1rem;
+    font-size: var(--font-lg);
     font-weight: 600;
 }
 
@@ -816,22 +834,22 @@ body {
     border: none;
     width: 35px;
     height: 35px;
-    border-radius: 50%;
+    border-radius: var(--radius-round);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
+    font-size: var(--font-xl);
     color: var(--text-light);
-    transition: all 0.2s ease;
+    transition: var(--transition-base);
 }
 
 .close-btn:active {
     transform: scale(0.9);
-    background: #e0e0e0;
+    background: var(--border-light);
 }
 
-/* Chat Modal - Mobil Optimize */
+/* ========== CHAT MODAL - MOBİL OPTİMİZE ========== */
 .chat-modal {
     max-height: calc(var(--vh, 1vh) * 90);
     padding: 0;
@@ -849,7 +867,7 @@ body {
 .chat-messages {
     flex: 1;
     overflow-y: auto;
-    padding: 1rem;
+    padding: var(--space-lg);
     background: var(--bg-light);
     -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
@@ -870,8 +888,8 @@ body {
 }
 
 .chat-message {
-    margin-bottom: 1rem;
-    animation: fadeInUp 0.3s ease;
+    margin-bottom: var(--space-lg);
+    animation: fadeInUp var(--transition-slow);
 }
 
 @keyframes fadeInUp {
@@ -896,165 +914,147 @@ body {
 .message-bubble {
     display: inline-block;
     max-width: 85%;
-    padding: 12px 16px;
-    border-radius: 20px;
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--radius-xl);
     word-wrap: break-word;
     line-height: 1.4;
-    font-size: 14px;
+    font-size: var(--font-sm);
 }
 
 .user .message-bubble {
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    color: white;
-    border-bottom-right-radius: 8px;
+    color: var(--white);
+    border-bottom-right-radius: var(--radius-sm);
 }
 
 .ai .message-bubble {
-    background: white;
+    background: var(--white);
     color: var(--text-dark);
     border: 1px solid var(--border-light);
-    border-bottom-left-radius: 8px;
-    box-shadow: 0 2px 8px var(--shadow-light);
+    border-bottom-left-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
 }
 
 .message-time {
-    font-size: 11px;
-    color: #999;
-    margin-top: 4px;
+    font-size: var(--font-xs);
+    color: var(--text-light);
+    margin-top: var(--space-xs);
 }
 
-/* AI Badge */
+/* ========== AI BADGE ========== */
 .ai-badge {
     display: inline-flex;
     align-items: center;
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    color: white;
-    padding: 4px 12px;
-    border-radius: 12px;
-    font-size: 12px;
-    margin-bottom: 8px;
+    color: var(--white);
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--radius-md);
+    font-size: var(--font-xs);
+    margin-bottom: var(--space-sm);
     font-weight: 500;
 }
 
-/* Quick Responses - ZORLA SCROLL AKTİF */
+/* ========== QUICK RESPONSES - TUTARLI SCROLL ========== */
 .quick-responses {
     display: flex;
-    gap: 15px; /* Gap artırıldı - daha fazla genişlik */
-    padding: 18px 1.5rem;
-    background: white;
-    border-top: 1px solid #eee;
-    overflow-x: scroll !important; /* ZORLA SCROLL */
+    gap: var(--space-lg);
+    padding: var(--space-xl) var(--space-xl);
+    background: var(--white);
+    border-top: 1px solid var(--border-light);
+    overflow-x: scroll;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
-    flex-wrap: nowrap !important; /* ZORLA TEK SATIR */
+    flex-wrap: nowrap;
     align-items: center;
     height: 70px;
     width: 100%;
-    /* Scroll için kritik ayarlar */
     overscroll-behavior-x: contain;
     scroll-behavior: smooth;
-    /* İçeriği zorla genişlet */
     min-width: 100%;
 }
 
-/* Scrollbar görünür */
 .quick-responses::-webkit-scrollbar {
     height: 6px;
-    display: block !important;
+    display: block;
 }
 
 .quick-responses::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: var(--bg-light);
     border-radius: 3px;
 }
 
 .quick-responses::-webkit-scrollbar-thumb {
-    background: #667eea;
+    background: var(--primary);
     border-radius: 3px;
 }
 
 .quick-response-btn {
     background: var(--bg-light);
-    border: 1px solid #ddd;
-    border-radius: 18px;
-    padding: 12px 18px; /* Padding artırıldı */
-    font-size: 14px;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-xl);
+    padding: var(--space-md) var(--space-xl);
+    font-size: var(--font-sm);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: var(--transition-base);
     white-space: nowrap;
-    flex-shrink: 0 !important; /* ZORLA küçülmesin */
+    flex-shrink: 0;
     font-weight: 500;
     height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    /* ZORLA minimum genişlik */
-    min-width: 120px !important;
-    /* Scroll için user-select disable */
+    min-width: 120px;
     user-select: none;
     -webkit-user-select: none;
 }
 
 .quick-response-btn:active {
     background: var(--primary);
-    color: white;
+    color: var(--white);
     border-color: var(--primary);
     transform: scale(0.95);
 }
 
-/* Mobil touch scroll optimizasyonu */
-@media (pointer: coarse) {
-    .quick-responses {
-        gap: 20px; /* Mobilde daha fazla gap */
-        padding: 18px 2rem; /* Mobilde daha fazla padding */
-    }
-
-    .quick-response-btn {
-        min-width: 140px !important; /* Mobilde daha geniş */
-        padding: 14px 20px;
-    }
-}
-
-/* Chat Input - Mobil Optimize */
+/* ========== CHAT INPUT - MOBİL OPTİMİZE ========== */
 .chat-input-container {
     display: flex;
-    gap: 12px;
-    padding: 1rem 1.5rem;
-    background: white;
-    border-top: 1px solid #eee;
-    padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+    gap: var(--space-md);
+    padding: var(--space-lg) var(--space-xl);
+    background: var(--white);
+    border-top: 1px solid var(--border-light);
+    padding-bottom: calc(var(--space-lg) + env(safe-area-inset-bottom, 0px));
 }
 
 .chat-input {
     flex: 1;
     border: 2px solid var(--bg-light);
     outline: none;
-    padding: 12px 16px;
+    padding: var(--space-md) var(--space-lg);
     font-size: 16px; /* iOS zoom önlemek için */
     background: var(--bg-light);
-    border-radius: 25px;
-    transition: all 0.2s ease;
+    border-radius: var(--radius-2xl);
+    transition: var(--transition-base);
 }
 
 .chat-input:focus {
     border-color: var(--primary);
-    background: white;
+    background: var(--white);
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
 .chat-send-btn {
     width: 48px;
     height: 48px;
-    border-radius: 50%;
+    border-radius: var(--radius-round);
     border: none;
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    color: white;
+    color: var(--white);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s ease;
+    transition: var(--transition-base);
     flex-shrink: 0;
 }
 
@@ -1069,25 +1069,25 @@ body {
 }
 
 .send-icon {
-    font-size: 1.4rem;
+    font-size: var(--font-xl);
 }
 
-/* Typing Indicator */
+/* ========== TYPING INDICATOR ========== */
 .typing-indicator {
     display: inline-flex;
     align-items: center;
-    padding: 12px 16px;
-    background: white;
+    padding: var(--space-md) var(--space-lg);
+    background: var(--white);
     border: 1px solid var(--border-light);
-    border-radius: 20px;
-    border-bottom-left-radius: 8px;
-    box-shadow: 0 2px 8px var(--shadow-light);
+    border-radius: var(--radius-xl);
+    border-bottom-left-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
 }
 
 .typing-dot {
     width: 8px;
     height: 8px;
-    border-radius: 50%;
+    border-radius: var(--radius-round);
     background: var(--primary);
     margin: 0 2px;
     animation: typing 1.4s infinite;
@@ -1107,19 +1107,19 @@ body {
     }
 }
 
-/* Suggestion Container - Mobil */
+/* ========== SUGGESTION CONTAINER - MOBİL ========== */
 .suggestion-container {
-    border-top: 1px solid #eee;
-    padding: 1rem 1.5rem;
-    background: white;
+    border-top: 1px solid var(--border-light);
+    padding: var(--space-lg) var(--space-xl);
+    background: var(--white);
     max-height: 40vh;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 }
 
 .suggestion-title {
-    font-size: 1rem;
-    margin-bottom: 12px;
+    font-size: var(--font-lg);
+    margin-bottom: var(--space-md);
     color: var(--primary);
     font-weight: 600;
 }
@@ -1127,16 +1127,16 @@ body {
 .suggestion-list {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: var(--space-sm);
 }
 
 .suggestion-item {
     background: var(--bg-light);
     border: 2px solid transparent;
-    border-radius: 16px;
-    padding: 16px;
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: var(--transition-base);
 }
 
 .suggestion-item:active {
@@ -1145,7 +1145,7 @@ body {
 
 .suggestion-item.selected {
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    color: white;
+    color: var(--white);
     border-color: var(--primary);
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
@@ -1153,14 +1153,14 @@ body {
 
 .suggestion-exercise {
     font-weight: 600;
-    margin-bottom: 6px;
-    font-size: 15px;
+    margin-bottom: var(--space-xs);
+    font-size: var(--font-base);
 }
 
 .suggestion-reason {
-    font-size: 13px;
+    font-size: var(--font-sm);
     opacity: 0.8;
-    margin-bottom: 8px;
+    margin-bottom: var(--space-sm);
 }
 
 .suggestion-item.selected .suggestion-reason {
@@ -1168,28 +1168,174 @@ body {
 }
 
 .suggestion-sets {
-    font-size: 12px;
+    font-size: var(--font-xs);
     opacity: 0.7;
     font-weight: 500;
 }
 
-/* Apply Button */
+/* ========== SUGGESTION GRID - ALT ALTA DİZİLİM ========== */
+.suggestion-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    padding: var(--space-sm);
+    max-height: 60vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.suggestion-card {
+    border: 2px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    cursor: pointer;
+    transition: var(--transition-base);
+    background: var(--white);
+    box-shadow: var(--shadow-sm);
+}
+
+.suggestion-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.suggestion-card.selected {
+    border-color: var(--success);
+    background-color: #f8fff8;
+    transform: translateY(-2px);
+}
+
+.suggestion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-sm);
+}
+
+.suggestion-exercise {
+    font-weight: 600;
+    font-size: var(--font-lg);
+    color: var(--text-dark);
+}
+
+.suggestion-difficulty {
+    color: var(--warning);
+    font-size: var(--font-sm);
+    font-weight: 500;
+}
+
+.suggestion-body {
+    margin: var(--space-sm) 0;
+}
+
+.suggestion-sets {
+    font-size: var(--font-sm);
+    color: var(--primary);
+    margin-bottom: var(--space-xs);
+    font-weight: 500;
+}
+
+.suggestion-equipment {
+    font-size: var(--font-xs);
+    color: var(--text-medium);
+    margin-bottom: var(--space-xs);
+}
+
+.suggestion-reason {
+    font-size: var(--font-xs);
+    color: var(--text-light);
+    font-style: italic;
+}
+
+.suggestion-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--space-sm);
+    gap: var(--space-sm);
+}
+
+.video-btn-small, .select-btn {
+    padding: var(--space-xs) var(--space-sm);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: var(--font-xs);
+    cursor: pointer;
+    font-weight: 500;
+    transition: var(--transition-base);
+}
+
+.video-btn-small {
+    background: var(--bg-light);
+    color: var(--text-dark);
+    border: 1px solid var(--border-light);
+}
+
+.select-btn {
+    background: var(--border-light);
+    color: var(--text-dark);
+}
+
+.suggestion-card.selected .select-btn {
+    background: var(--success);
+    color: var(--white);
+}
+
+.suggestion-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-sm);
+    border-top: 1px solid var(--border-light);
+    background: var(--white);
+    position: sticky;
+    bottom: 0;
+    gap: var(--space-sm);
+}
+
+.cancel-btn, .apply-btn {
+    padding: var(--space-sm) var(--space-xl);
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: var(--font-base);
+    font-weight: 500;
+    transition: var(--transition-base);
+    flex: 1;
+}
+
+.cancel-btn {
+    background: var(--bg-light);
+    color: var(--text-dark);
+    border: 1px solid var(--border-light);
+}
+
+.apply-btn {
+    background: var(--success);
+    color: var(--white);
+}
+
+.apply-btn:disabled {
+    background: var(--border-medium);
+    cursor: not-allowed;
+}
+
+/* ========== APPLY SUGGESTIONS BUTTON ========== */
 .apply-suggestions-btn {
     width: 100%;
-    padding: 16px;
-    margin-top: 16px;
+    padding: var(--space-lg);
+    margin-top: var(--space-lg);
     background: linear-gradient(135deg, var(--success), var(--success-light));
-    color: white;
+    color: var(--white);
     border: none;
-    border-radius: 16px;
-    font-size: 16px;
+    border-radius: var(--radius-lg);
+    font-size: var(--font-lg);
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: var(--transition-base);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: var(--space-sm);
+    min-height: 56px;
 }
 
 .apply-suggestions-btn:active {
@@ -1202,20 +1348,20 @@ body {
     transform: none;
 }
 
-/* Toast - Mobil */
+/* ========== TOAST - MOBİL ========== */
 .toast {
     position: fixed;
-    bottom: calc(env(safe-area-inset-bottom, 0px) + 2rem);
-    left: 1rem;
-    right: 1rem;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + var(--space-2xl));
+    left: var(--space-lg);
+    right: var(--space-lg);
     background: var(--text-dark);
-    color: white;
-    padding: 16px 20px;
-    border-radius: 12px;
+    color: var(--white);
+    padding: var(--space-lg) var(--space-xl);
+    border-radius: var(--radius-md);
     z-index: 10000;
     opacity: 0;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    font-size: 14px;
+    transition: var(--transition-slow);
+    font-size: var(--font-sm);
     text-align: center;
     transform: translateY(100px);
     font-weight: 500;
@@ -1226,43 +1372,43 @@ body {
     transform: translateY(0);
 }
 
-/* Loading Spinner */
+/* ========== LOADING SPINNER ========== */
 .loading {
     display: inline-block;
     width: 20px;
     height: 20px;
     border: 2px solid rgba(255,255,255,0.3);
-    border-radius: 50%;
-    border-top-color: white;
+    border-radius: var(--radius-round);
+    border-top-color: var(--white);
     animation: spin 1s ease-in-out infinite;
 }
 
-/* Empty State */
+/* ========== EMPTY STATE ========== */
 .empty-state {
     text-align: center;
-    padding: 2rem;
+    padding: var(--space-2xl);
     color: var(--text-light);
 }
 
 .empty-state-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: var(--space-3xl);
+    margin-bottom: var(--space-lg);
 }
 
-/* Alternative Modal (eski sistem) */
+/* ========== ALTERNATIVE MODAL ========== */
 .alternative-list {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    margin-top: 1rem;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
 }
 
 .alternative-item {
     background: var(--bg-light);
-    border-radius: 15px;
-    padding: 1rem;
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: var(--transition-base);
     border: 2px solid transparent;
 }
 
@@ -1274,34 +1420,34 @@ body {
 
 .alternative-name {
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--space-sm);
 }
 
 .alternative-difficulty {
     color: var(--primary);
-    font-size: 0.85rem;
-    margin-bottom: 0.25rem;
+    font-size: var(--font-sm);
+    margin-bottom: var(--space-xs);
 }
 
 .alternative-sets {
     color: var(--text-light);
-    font-size: 0.8rem;
+    font-size: var(--font-sm);
 }
 
-/* Mobile Responsive - Video Modal */
+/* ========== RESPONSIVE DESIGN ========== */
 @media (max-width: 768px) {
     .video-modal-content {
         width: 95%;
         max-height: 85vh;
-        margin: 10px;
+        margin: var(--space-sm);
     }
 
     .video-modal-header {
-        padding: 15px;
+        padding: var(--space-lg);
     }
 
     .video-modal-header h3 {
-        font-size: 1.1rem;
+        font-size: var(--font-lg);
     }
 
     .video-player iframe {
@@ -1314,12 +1460,25 @@ body {
 
     .exercise-actions {
         flex-direction: column;
-        gap: 5px;
+        gap: var(--space-xs);
     }
 
     .video-btn, .difficulty-btn {
         width: 100%;
         justify-content: center;
+        min-height: 42px;
+        padding: var(--space-sm) var(--space-md);
+        font-size: var(--font-sm);
+    }
+
+    .quick-responses {
+        gap: var(--space-xl);
+        padding: var(--space-xl) var(--space-2xl);
+    }
+
+    .quick-response-btn {
+        min-width: 140px;
+        padding: var(--space-sm) var(--space-xl);
     }
 }
 
@@ -1329,11 +1488,22 @@ body {
     }
 
     .video-info {
-        padding: 15px;
+        padding: var(--space-lg);
+    }
+
+    .video-btn, .difficulty-btn {
+        min-height: 40px;
+        padding: var(--space-sm) var(--space-md);
+        font-size: var(--font-sm);
+        gap: var(--space-xs);
+    }
+
+    .video-icon, .difficulty-btn .chat-icon {
+        font-size: var(--font-sm);
     }
 }
 
-/* Performance optimizasyonları */
+/* ========== PERFORMANCE OPTİMİZASYONLARI ========== */
 .chat-message,
 .suggestion-item,
 .quick-response-btn,
@@ -1342,15 +1512,15 @@ body {
     will-change: transform;
 }
 
-/* Safe area desteği */
+/* ========== SAFE AREA DESTEĞİ ========== */
 @supports (padding: max(0px)) {
     .modal {
-        padding-left: max(1rem, env(safe-area-inset-left));
-        padding-right: max(1rem, env(safe-area-inset-right));
+        padding-left: max(var(--space-lg), env(safe-area-inset-left));
+        padding-right: max(var(--space-lg), env(safe-area-inset-right));
     }
 }
 
-/* iOS Safari specific fixes */
+/* ========== iOS SAFARI SPECİFİK DÜZELTMELER ========== */
 @supports (-webkit-touch-callout: none) {
     .chat-input {
         font-size: 16px; /* iOS zoom önlemek için */
@@ -1361,22 +1531,24 @@ body {
     }
 }
 
-/* Smooth scrolling */
+/* ========== SMOOTH SCROLLING ========== */
 html {
     scroll-behavior: smooth;
 }
 
-/* Focus styles - accessibility */
+/* ========== FOCUS STYLES - ERİŞİLEBİLİRLİK ========== */
 .chat-input:focus,
 .quick-response-btn:focus,
 .difficulty-btn:focus,
 .chat-send-btn:focus,
-.video-btn:focus {
+.video-btn:focus,
+.generate-btn:focus,
+.day-card:focus {
     outline: 2px solid var(--primary);
     outline-offset: 2px;
 }
 
-/* Reduced motion support */
+/* ========== REDUCED MOTION SUPPORT ========== */
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -1387,28 +1559,18 @@ html {
     }
 }
 
-/* Critical above-the-fold styles */
-.app-container {
-    opacity: 0;
-    animation: fadeIn 0.3s ease forwards;
-}
-
-@keyframes fadeIn {
-    to { opacity: 1; }
-}
-
-/* Loading state */
+/* ========== LOADING STATE ========== */
 .loading-state {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    font-size: 2rem;
+    font-size: var(--space-2xl);
 }
 
-/* Skeleton loading for better UX */
+/* ========== SKELETON LOADING ========== */
 .skeleton {
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background: linear-gradient(90deg, var(--bg-light) 25%, var(--border-light) 50%, var(--bg-light) 75%);
     background-size: 200% 100%;
     animation: loading 1.5s infinite;
 }
@@ -1418,7 +1580,7 @@ html {
     100% { background-position: -200% 0; }
 }
 
-/* Accessibility improvements */
+/* ========== ERİŞİLEBİLİRLİK İYİLEŞTİRMELERİ ========== */
 .sr-only {
     position: absolute;
     width: 1px;
@@ -1431,7 +1593,7 @@ html {
     border: 0;
 }
 
-/* High contrast mode support - Modern CSS */
+/* ========== HIGH CONTRAST MODE SUPPORT ========== */
 @media (prefers-contrast: more) {
     :root {
         --primary: #000080;
@@ -1441,7 +1603,7 @@ html {
     }
 }
 
-/* Windows High Contrast Mode support */
+/* ========== WINDOWS HIGH CONTRAST MODE SUPPORT ========== */
 @media (forced-colors: active) {
     :root {
         --primary: ButtonText;
@@ -1455,7 +1617,7 @@ html {
     }
 }
 
-/* Focus indicators for better accessibility */
+/* ========== UNIVERSAL FOCUS INDICATORS ========== */
 *:focus {
     outline: 2px solid var(--primary, #667eea);
     outline-offset: 2px;
