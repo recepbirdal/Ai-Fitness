@@ -1110,23 +1110,80 @@ function showSuggestions(suggestions) {
     container.innerHTML = '';
 
     const suggestionListDiv = document.createElement('div');
+    suggestionListDiv.className = 'suggestion-grid';
+
     suggestionListDiv.innerHTML = suggestions.map((sug, index) => `
-        <div class="suggestion-item" onclick="toggleSuggestion(${index})">
-            <div class="suggestion-exercise">${sug.isim}</div>
-            <div class="suggestion-reason">${sug.reason || 'Alternatif öneri'}</div>
-            <div class="suggestion-sets">${sug.set}</div>
+        <div class="suggestion-card" onclick="selectSuggestion(${index})">
+            <div class="suggestion-header">
+                <div class="suggestion-exercise">${sug.isim}</div>
+                <div class="suggestion-difficulty">${'⭐'.repeat(sug.zorluk)}</div>
+            </div>
+            <div class="suggestion-body">
+                <div class="suggestion-sets">${sug.set}</div>
+                <div class="suggestion-equipment">${sug.ekipman || 'Vücut Ağırlığı'}</div>
+                <div class="suggestion-reason">${sug.reason || 'AI Önerisi'}</div>
+            </div>
+            <div class="suggestion-footer">
+                <button class="video-btn-small" onclick="event.stopPropagation(); showExerciseVideo(${sug.id}, '${sug.isim}')">
+                    🎥 Video
+                </button>
+                <button class="select-btn" onclick="event.stopPropagation(); selectSuggestion(${index})">
+                    ${selectedSuggestions.includes(sug) ? '✓ Seçildi' : 'Seç'}
+                </button>
+            </div>
         </div>
     `).join('');
 
-    const applyBtn = document.createElement('button');
-    applyBtn.className = 'apply-suggestions-btn';
-    applyBtn.innerHTML = '✅ Öneri Seç';
-    applyBtn.onclick = applySuggestions;
-    applyBtn.disabled = true;
+    const actionButtons = document.createElement('div');
+    actionButtons.className = 'suggestion-actions';
+
+    actionButtons.innerHTML = `
+        <button class="cancel-btn" onclick="closeSuggestions()">
+            İptal
+        </button>
+        <button class="apply-btn" onclick="applySuggestions()" ${selectedSuggestions.length === 0 ? 'disabled' : ''}>
+            Uygula (${selectedSuggestions.length})
+        </button>
+    `;
 
     container.appendChild(suggestionListDiv);
-    container.appendChild(applyBtn);
+    container.appendChild(actionButtons);
     container.style.display = 'block';
+}
+
+function selectSuggestion(index) {
+    const suggestion = aiSuggestions[index];
+    const isSelected = selectedSuggestions.some(s => s.id === suggestion.id);
+
+    if (isSelected) {
+        selectedSuggestions = selectedSuggestions.filter(s => s.id !== suggestion.id);
+    } else {
+        selectedSuggestions = [...selectedSuggestions, suggestion];
+    }
+
+    // UI'ı güncelle
+    const cards = document.querySelectorAll('.suggestion-card');
+    cards.forEach((card, i) => {
+        if (i === index) {
+            card.classList.toggle('selected', !isSelected);
+        }
+        const selectBtn = card.querySelector('.select-btn');
+        if (selectBtn) {
+            selectBtn.textContent = selectedSuggestions.some(s => s.id === aiSuggestions[i].id) ? '✓ Seçildi' : 'Seç';
+        }
+    });
+
+    // Uygula butonunu güncelle
+    const applyBtn = document.querySelector('.apply-btn');
+    if (applyBtn) {
+        applyBtn.disabled = selectedSuggestions.length === 0;
+        applyBtn.textContent = `Uygula (${selectedSuggestions.length})`;
+    }
+}
+
+function closeSuggestions() {
+    document.getElementById('suggestionContainer').style.display = 'none';
+    selectedSuggestions = [];
 }
 
 function toggleSuggestion(index) {
@@ -1152,7 +1209,7 @@ function toggleSuggestion(index) {
 
 function applySuggestions() {
     if (selectedSuggestions.length === 0) {
-        showToast('❌ Lütfen bir öneri seçin');
+        showToast('❌ Lütfen en az bir öneri seçin');
         return;
     }
 
@@ -1164,16 +1221,25 @@ function applySuggestions() {
         return;
     }
 
-    const exerciseIndex = dayProgram.egzersizler.findIndex(e => e.id === exerciseId);
-    if (exerciseIndex === -1) {
-        showToast('❌ Egzersiz bulunamadı');
-        return;
-    }
+    // Eğer tek bir egzersiz için öneri seçildiyse (replace)
+    if (exerciseId) {
+        const exerciseIndex = dayProgram.egzersizler.findIndex(e => e.id === exerciseId);
+        if (exerciseIndex === -1) {
+            showToast('❌ Egzersiz bulunamadı');
+            return;
+        }
 
-    dayProgram.egzersizler[exerciseIndex] = selectedSuggestions[0];
+        // Seçilen ilk öneriyle değiştir
+        dayProgram.egzersizler[exerciseIndex] = selectedSuggestions[0];
+    }
+    // Eğer yeni egzersiz eklemek için öneri seçildiyse (add)
+    else {
+        dayProgram.egzersizler.push(...selectedSuggestions);
+    }
 
     saveProgram();
     closeChatModal();
+    closeSuggestions();
     displayWeekView();
 
     if (selectedDay === gun) {
@@ -1181,6 +1247,7 @@ function applySuggestions() {
     }
 
     showToast('✅ Program başarıyla güncellendi!');
+    selectedSuggestions = [];
 }
 
 // Hızlı yanıt butonları
